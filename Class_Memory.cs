@@ -80,7 +80,6 @@ namespace CoreCheat_Reborn
         internal static void OpenProcess(int pId, ProcessAccessFlags ProcessAccess = ProcessAccessFlags.All)
         {
             ProcessHandle = NativeMethods.OpenProcess(ProcessAccess, false, pId);
-            HandleIT();
         }
 
         internal static int AllocateMemory(int memorySize)
@@ -231,18 +230,6 @@ namespace CoreCheat_Reborn
             return RawDeserialize(buffer, 0, anyType);
         }
         #endregion
-        public static void HandleIT()
-        {
-            if (sended == false)
-            {
-                sended = true;
-                Version2.ver2Main.CheatEnabled();
-            }
-            else
-            {
-
-            }
-        }
         private static object RawDeserialize(byte[] rawData, int position, Type anyType)
         {
             int rawsize = Marshal.SizeOf(anyType);

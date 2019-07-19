@@ -1,73 +1,61 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using static CoreCheat_Reborn.Classes.Global;
+using static CoreCheat_Reborn.Classes.WebConnection;
 namespace CoreCheat_Reborn
 {
-    public partial class Form1 : MetroFramework.Forms.MetroForm
+    public partial class vSelector : MetroFramework.Forms.MetroForm
     {
-        public static string procDurum;
-        public static string durumMsg;
-        public static string durumLnk;
-        public static string duyuruDrm;
-        public static string verNum;
-        public static string a;
-        public static float b;
-        public Form1()
+        public vSelector()
         {
             InitializeComponent();
+            DataWrap();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void vSelector_Load(object sender, EventArgs e)
         {
             mainTab.SelectedIndex = 0;
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+        }
+        private void DataWrap()
+        {
             try
             {
                 using (var webClient = new System.Net.WebClient())
                 {
-                    verNum = webClient.DownloadString("http://xxx.com/file/launcher/version.txt");
-                    verLink.Text = webClient.DownloadString("http://xxx.com/file/launcher/linkversion.txt");
-                    procDurum = webClient.DownloadString("http://xxx.com/file/launcher/durum.txt");
-                    durumMsg = webClient.DownloadString("http://xxx.com/file/launcher/durumMsg.txt");
-                    duyuruDrm = webClient.DownloadString("http://xxx.com/file/launcher/duyuru.txt");
-                    version0_5.Text = webClient.DownloadString("http://xxx.com/file/vers0_5/durum.txt");
-                    version1_5.Text = webClient.DownloadString("http://xxx.com/file/vers1_5/durum.txt");
-                    version2.Text = webClient.DownloadString("http://xxx.com/file/vers2/durum.txt");
-                    version2_1.Text = webClient.DownloadString("http://xxx.com/file/vers2_1/durum.txt");
-                    version2_5.Text = webClient.DownloadString("http://xxx.com/file/vers2_5/durum.txt");
-                    durumLnk = webClient.DownloadString("http://xxx.com/file/launcher/durumlink.txt");
-                    verpanarom.Text = webClient.DownloadString("http://xxx.com/file/vers0_3/durum.txt");
-                    annTXT.Text = webClient.DownloadString("http://xxx.com/file/launcher/duyuruFrm.txt");
+                    WebVersion = GetStrData("version");
+                    UpdateRedirect = GetStrData("update");
+                    ProgramStatus = IsProgramStatus();
+                    CheatError = GetStrData("cheaterr");
+                    OpenMessage = IsOpenMSG();
+                    CloseRedirect = IsCloseRedir();
+                    UpdateLink = GetStrData("update");
+                    annTXT.Text = GetStrData("announcment");
+                    CloseLink = GetStrData("closelink");
                 }
             }
-            catch
+            catch { }
+            versCombo.Items.Clear();
+            versCombo.Items.Add(GetStrData("cheats"));
+            if (versCombo.Items[0].ToString().Length < 3)
             {
-
+                versCombo.Enabled = false;
             }
-            if (verNum != Convert.ToString(fvi.FileVersion))
+            if (WebVersion != "OK")
             {
-                MessageBox.Show("Your Launcher Has Been Outdated. Please Download New Version!", "Version Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Process.Start(verLink.Text);
-                //Environment.Exit(0);
+                MessageBox.Show("Your Launcher Has Been Outdated Or Modified. Please Download New Version or Again!", "Version Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(GetStrData("update"));
+                Process.Start(UpdateLink);
+                Environment.Exit(0);
             }
             else
             {
-                if (procDurum == "kapali")
+                if (!ProgramStatus)
                 {
-                    var webClient = new System.Net.WebClient();
-                    MessageBox.Show("Launcher Closed For A While. Reason: \n" + webClient.DownloadString("http://xxx.com/file/launcher/durumMsg.txt"), "Info!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (durumLnk != String.Empty)
+                    MessageBox.Show("Launcher Closed For A While. Reason: \n" + GetStrData("closealert"), "Info!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (CloseRedirect)
                     {
-                        Process.Start(durumLnk);
+                        Process.Start(CloseLink);
                         Environment.Exit(0);
                     }
                     else
@@ -77,10 +65,9 @@ namespace CoreCheat_Reborn
                 }
                 else
                 {
-                    if (duyuruDrm == "acik")
+                    if (OpenMessage)
                     {
-                        var webClient = new System.Net.WebClient();
-                        MessageBox.Show("Message From Admin: \n" + webClient.DownloadString("http://xxx.com/file/launcher/duyuruMsg.txt"), "Message:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Message From Admin: \n" + GetStrData("message"), "Message:", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -89,7 +76,6 @@ namespace CoreCheat_Reborn
                 }
             }
         }
-
         private void versTimer_Tick(object sender, EventArgs e)
         {
             if (versCombo.SelectedIndex >= 0)
@@ -104,118 +90,36 @@ namespace CoreCheat_Reborn
 
         private void launchBtn_Click(object sender, EventArgs e)
         {
-            if (versCombo.SelectedIndex == 0)
+            if (versCombo.SelectedItem.ToString() == "Version Panorama")
             {
-                if (version2_1.Text == "acik")
+                if (IsCheatOpen("panorama"))
                 {
-                    Version2._1.ver2_1Launcher ver2Lnch = new Version2._1.ver2_1Launcher();
+                    Versions.Panorama.Launcher launcher = new Versions.Panorama.Launcher();
                     this.Hide();
                     versTimer.Enabled = false;
-                    ver2Lnch.Show();
+                    launcher.Show();
                 }
                 else
                 {
-                    Version2._1.ver2_1Launcher ver2Lnch = new Version2._1.ver2_1Launcher();
-                    this.Hide();
-                    versTimer.Enabled = false;
-                    ver2Lnch.Show();
-                    //var webClient = new System.Net.WebClient();
-                    //MessageBox.Show("Version 2.1 Closed For A While. Reason: \n" + webClient.DownloadString("http://xxx.com/file/vers2_1/durumMsg.txt"), "Info!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var webClient = new System.Net.WebClient();
+                    MessageBox.Show("Version Panorama Closed For A While. Reason: \n" + CheatError, "Info!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-            }
-            else if (versCombo.SelectedIndex == 1)
-            {
-                if (verpanarom.Text == "acik")
-                {
-                    Version0._3.ver0_3Launcher ver2Lnch = new Version0._3.ver0_3Launcher();
-                    this.Hide();
-                    versTimer.Enabled = false;
-                    ver2Lnch.Show();
-                }
-                else
-                {
-                    Version0._3.ver0_3Launcher ver2Lnch = new Version0._3.ver0_3Launcher();
-                    this.Hide();
-                    versTimer.Enabled = false;
-                    ver2Lnch.Show();
-                    //var webClient = new System.Net.WebClient();
-                    //MessageBox.Show("Version 2.0 Closed For A While. Reason: \n" + webClient.DownloadString("http://xxx.com/file/vers0_3/durumMsg.txt"), "Info!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-            }
-            else if (versCombo.SelectedIndex == 2)
-            {
-                if (version2.Text == "acik")
-                {
-                    Version2.ver2Launcher ver2Lnch = new Version2.ver2Launcher();
-                    this.Hide();
-                    versTimer.Enabled = false;
-                    ver2Lnch.Show();
-                }
-                else
-                {
-                    Version2.ver2Launcher ver2Lnch = new Version2.ver2Launcher();
-                    this.Hide();
-                    versTimer.Enabled = false;
-                    ver2Lnch.Show();
-                    //    var webClient = new System.Net.WebClient();
-                    //    MessageBox.Show("Version 2.0 Closed For A While. Reason: \n" + webClient.DownloadString("http://xxx.com/file/vers2/durumMsg.txt"), "Info!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                
-            }
-            else if (versCombo.SelectedIndex == 3)
-            {
-                if (version1_5.Text == "acik")
-                {
-                    Version1._5.ver1_5Launcher ver1_5Lnch = new Version1._5.ver1_5Launcher();
-                    this.Hide();
-                    versTimer.Enabled = false;
-                    ver1_5Lnch.Show();
-                }
-                else
-                {
-                    Version1._5.ver1_5Launcher ver1_5Lnch = new Version1._5.ver1_5Launcher();
-                    this.Hide();
-                    versTimer.Enabled = false;
-                    ver1_5Lnch.Show();
-                    //var webClient = new System.Net.WebClient();
-                    //MessageBox.Show("Version 1.5 Closed For A While. Reason: \n" + webClient.DownloadString("http://xxx.com/file/vers1_5/durumMsg.txt"), "Info!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else if (versCombo.SelectedIndex == 4)
-            {
-                if (version0_5.Text == "acik")
-                {
-                    Version0._5.ver0_5Launcher ver0_5Lnch = new Version0._5.ver0_5Launcher();
-                    this.Hide();
-                    versTimer.Enabled = false;
-                    ver0_5Lnch.Show();
-                }
-                else
-                {
-                    Version0._5.ver0_5Launcher ver0_5Lnch = new Version0._5.ver0_5Launcher();
-                    this.Hide();
-                    versTimer.Enabled = false;
-                    ver0_5Lnch.Show();
-                    //var webClient = new System.Net.WebClient();
-                    //MessageBox.Show("Version 0.5 Closed For A While. Reason: \n" + webClient.DownloadString("http://xxx.com/file/vers0_5/durumMsg.txt"), "Info!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("An Error Exited. Please Report To Us!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void Inject_FormClosing(object sender, FormClosingEventArgs e)
+        public void vSelector_FormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(0);
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void secretPic_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("CoreCheat CSGO Will Be 'END' Within Close Time. I'm Sorry For That But I'm Tired.","Secret Message");
+            MessageBox.Show("UR M0M GAY. LOOOOOOOOOOOOOOOOOOL","Secret Message");
         }
 
+        private void ProfilePicture_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/MrCylops");
+        }
     }
 }
