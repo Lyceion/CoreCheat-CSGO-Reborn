@@ -2,14 +2,14 @@
 using System.Diagnostics;
 using System.Reflection;
 using static CoreCheat_Reborn.Classes.Base64;
-using static CoreCheat_Reborn.Classes.WebConnection;
+using static CoreCheat_Reborn.Classes.ExecutingHash;
 
 namespace CoreCheat_Reborn.Classes
 {
     public static class Global
     {
         //SERVER PHP
-        public static string server = "https://www.lysep.com/corecheat/check.php";
+        public static string server = "http://www.lysep.com/corecheat/check.php";
 
         //DEPENDS
         public static Assembly assembly = Assembly.GetExecutingAssembly();
@@ -28,7 +28,8 @@ namespace CoreCheat_Reborn.Classes
         //LOCAL VARS
         public static string ProgramName = Assembly.GetExecutingAssembly().ToString();
         public static string ProgramVersion = Convert.ToString(fvi.FileVersion);
-        public static string KEY = Base64Encode(ProgramVersion + ProgramName);
+        public static string FileHash = GetExecutingFileHash();
+        public static string KEY = Base64Encode(FileHash + ProgramVersion + ProgramName);
         //public static string KEY = "test";
     } 
 }
