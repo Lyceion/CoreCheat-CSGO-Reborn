@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{35165BDA-6BF9-4A1C-AE2E-88C58035F152}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CoreCheat_Reborn</RootNamespace>
+    <AssemblyName>core</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CoreCheatModified.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CoreCheat_Reborn.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.52">
+      <HintPath>..\..\..\..\..\Desktop\Desktop\Bunifu_UI_v1.52.dll</HintPath>
+    </Reference>
+    <Reference Include="Costura, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Costura.Fody.4.1.0\lib\net40\Costura.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Functions.cs" />
+    <Compile Include="Design\TransparentLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\TransparentPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expire.Designer.cs">
+      <DependentUpon>Expire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SDK\Controllers\AimBotController.cs" />
+    <Compile Include="SDK\Controllers\AimBotControllerNEW.cs" />
+    <Compile Include="SDK\Controllers\Allocator.cs" />
+    <Compile Include="SDK\Controllers\ClientCMD.cs" />
+    <Compile Include="SDK\Engine\EngineClient.cs" />
+    <Compile Include="SDK\Entities\CEntityPlayer.cs" />
+    <Compile Include="CheatClasses\Enums.cs" />
+    <Compile Include="SDK\Entities\CWeapon.cs" />
+    <Compile Include="SDK\Managers\Maths.cs" />
+    <Compile Include="SDK\Managers\Modules.cs" />
+    <Compile Include="CheatClasses\Structs.cs" />
+    <Compile Include="Classes\Base64.cs" />
+    <Compile Include="Classes\Enums.cs" />
+    <Compile Include="Classes\Essentials.cs" />
+    <Compile Include="Classes\ExecutingHash.cs" />
+    <Compile Include="SDK\Entities\CLocalPlayer.cs" />
+    <Compile Include="SDK\Managers\Methods.cs" />
+    <Compile Include="CheatClasses\Offsets.cs" />
+    <Compile Include="Classes\MusicLib.cs" />
+    <Compile Include="Classes\Processes.cs" />
+    <Compile Include="SDK\Controllers\CylMem.cs" />
+    <Compile Include="Classes\Global.cs" />
+    <Compile Include="Classes\Structs.cs" />
+    <Compile Include="Debugger\Datas.cs" />
+    <Compile Include="OffsetUpdater\Updater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OffsetUpdater\Updater.Designer.cs">
+      <DependentUpon>Updater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SDK\Managers\Parsers.cs" />
+    <Compile Include="SDK\Overlay\CoreOverlay.cs" />
+    <Compile Include="SDK\Parsers\INIParser.cs" />
+    <Compile Include="Version Selector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Version Selector.Designer.cs">
+      <DependentUpon>Version Selector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Versions\FullLegit\Launcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\FullLegit\Launcher.Designer.cs">
+      <DependentUpon>Launcher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\FullLegit\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\FullLegit\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\FullLegit\Settings.cs" />
+    <Compile Include="Versions\OnlyWall\Launcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\OnlyWall\Launcher.Designer.cs">
+      <DependentUpon>Launcher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\OnlyWall\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\OnlyWall\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\Panorama\CheatSettings\ChamsSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\CheatSettings\ChamsSettings.Designer.cs">
+      <DependentUpon>ChamsSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\Panorama\CheatSettings\GlowSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\CheatSettings\GlowSettings.Designer.cs">
+      <DependentUpon>GlowSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\Panorama\CheatSettings\TriggerSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\CheatSettings\TriggerSettings.Designer.cs">
+      <DependentUpon>TriggerSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\Panorama\Dev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\Dev.Designer.cs">
+      <DependentUpon>Dev.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Debugger\Debugger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Debugger\Debugger.Designer.cs">
+      <DependentUpon>Debugger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\Panorama\Launcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\Launcher.Designer.cs">
+      <DependentUpon>Launcher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\Panorama\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\WebConnection.cs" />
+    <Compile Include="Versions\Panorama\Settings.cs" />
+    <Compile Include="Versions\ZDEV\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\ZDEV\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Expire.resx">
+      <DependentUpon>Expire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OffsetUpdater\Updater.resx">
+      <DependentUpon>Updater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Version Selector.resx">
+      <DependentUpon>Version Selector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Versions\FullLegit\Launcher.resx">
+      <DependentUpon>Launcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\FullLegit\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\OnlyWall\Launcher.resx">
+      <DependentUpon>Launcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\OnlyWall\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\CheatSettings\ChamsSettings.resx">
+      <DependentUpon>ChamsSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\CheatSettings\GlowSettings.resx">
+      <DependentUpon>GlowSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\CheatSettings\TriggerSettings.resx">
+      <DependentUpon>TriggerSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\Dev.resx">
+      <DependentUpon>Dev.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Debugger\Debugger.resx">
+      <DependentUpon>Debugger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\Launcher.resx">
+      <DependentUpon>Launcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\ZDEV\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diskette_save_saveas_1514.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Profile.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CoreCheatLogoICON.ico" />
+    <None Include="Resources\bg_new.jpg" />
+    <None Include="Resources\CoreCheatModified.png" />
+    <None Include="Resources\CoreCheatTransparent.png" />
+    <Content Include="CoreCheatModified.ico" />
+    <Content Include="yapilacaklar.txt" />
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\imperialmarch.wav" />
+    <None Include="Resources\lspp.png" />
+    <None Include="Resources\CoreCheatLogo.png" />
+    <None Include="Resources\MODEL_T.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Bu proje bu bilgisayarda olmayan NuGet paketlerine başvuru yapıyor. Bunları indirmek için NuGet Paket Geri Yükleme'yi kullanın. Daha fazla bilgi için, bkz. http://go.microsoft.com/fwlink/?LinkID=322105. Eksik dosya: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.6.1.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.1.1\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props'))" />
+  </Target>
+  <Import Project="..\packages\Fody.6.1.1\build\Fody.targets" Condition="Exists('..\packages\Fody.6.1.1\build\Fody.targets')" />
+</Project>
