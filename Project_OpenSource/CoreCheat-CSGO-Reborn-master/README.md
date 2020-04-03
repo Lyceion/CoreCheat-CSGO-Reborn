@@ -1,6 +1,8 @@
 # The real Cheetos
 Ok, time to talk some serious sh_t. We are here. Features bellow. This external cheat is not optimised very much but on my pc i can play on 120 fps with f_ckn AMD CPU (5 y.o. ) and GPU (HD 7950 LMAO) with 8 GB DDR3 on FULL settings. IDK how can it be possible but idc. Screenshots and features bellow enjoy with it!
 <p align="center">
+<img src="https://i.postimg.cc/RZTmsS4Z/image.png" width="1000px">
+    
 <img src="https://i.postimg.cc/yNW96mCS/Core-Project1.png" alt="Core-Project1" width="1000px"/>
 
 <img src="https://i.postimg.cc/1zCdFptQ/pasted-generic-blob.png" alt="pasted-generic-blob" width="1000px"/>
