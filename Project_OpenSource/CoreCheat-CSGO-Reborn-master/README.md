@@ -36,7 +36,7 @@ Ok, time to talk some serious sh_t. We are here. Features bellow. This external 
     - Triggerbot (Shoots peaple when he is on your crosshair.)
     - Triggerbot settings
     - Visible Chams (People are painted. So It s easy to see now...)
-    -Chams Settings
+    - Chams Settings
     
     Fully Legit Features:
     - DeadESP (Shows enemy positions when u are dead. (This is for giving infos.))
@@ -58,15 +58,15 @@ Ok, time to talk some serious sh_t. We are here. Features bellow. This external 
     - Recoil Control System (RCS: Silahınız sekmez.)
     - Grenade Trajectory (Bombanın gidişini gösterir.) [Disabled for security reasons]
     - Engine Radar (Adamların yerini csgo nun kendi haritasından görebilirsiniz. Spotlanmış gibi gözükür...)
-    -AutoPistol (Sanki otomatik silah kullanıyormuş gibi pistolle spray atın.)
+    - AutoPistol (Sanki otomatik silah kullanıyormuş gibi pistolle spray atın.)
     - TriggerBot (Aiminizin baktığı adamı otomatik vurur.)
     - Trigerbot ayarları
     - Visible Chams (Oyuncular parlak şekilde boyanır. Daha kolay görürsünüz...)
-    -Chams ayarları.
+    - Chams ayarları.
     
     Fully Legit Özellikleri:
     - DeadESP (Öldüğünüzde info verme amaçlı rakibin yerleri gözükmeye başlar.)
-    -Health Chams (Karanlıkta adamları daha rahat görebilmeniz için parlarlar. Ve parladıkları renk de can miktarlarını gösterir.
+    - Health Chams (Karanlıkta adamları daha rahat görebilmeniz için parlarlar. Ve parladıkları renk de can miktarlarını gösterir.
     - Radar (Oyunun kendi radarında adamların yerini gösterir.)
     - Triggerbot (Daha yapılıcak optimizasyonu ve ayarları var)
     
