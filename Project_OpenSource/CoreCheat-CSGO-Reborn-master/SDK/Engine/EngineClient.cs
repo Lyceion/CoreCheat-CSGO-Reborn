@@ -41,6 +41,19 @@ namespace CoreCheat_Reborn.CheatClasses
                 }
             }
         }
+        public static float GameTick
+        {
+            get
+            {
+                if (ClientStateBase != 0)
+                    return CylMem.ReadFloat(Modules.EngineDLLAdress + dwGlobalVars + 16);
+                else
+                {
+                    ConfigureClientState();
+                    return CylMem.ReadFloat(Modules.EngineDLLAdress + dwGlobalVars + 16);
+                }
+            }
+        }
         public static GameState GameState
         {
             get

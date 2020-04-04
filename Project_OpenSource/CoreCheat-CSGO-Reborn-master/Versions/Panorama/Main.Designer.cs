@@ -100,6 +100,8 @@
             this.titleTimer = new System.Windows.Forms.Timer(this.components);
             this.dotHider = new MetroFramework.Controls.MetroPanel();
             this.realDotHider = new MetroFramework.Controls.MetroPanel();
+            this.dIndicatorButton = new MetroFramework.Controls.MetroToggle();
+            this.dIndicatorTXT = new MetroFramework.Controls.MetroLabel();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPic)).BeginInit();
             this.mainTab.SuspendLayout();
@@ -179,7 +181,7 @@
             this.mainTab.Controls.Add(this.settingsPage);
             this.mainTab.Location = new System.Drawing.Point(0, 0);
             this.mainTab.Name = "mainTab";
-            this.mainTab.SelectedIndex = 2;
+            this.mainTab.SelectedIndex = 0;
             this.mainTab.Size = new System.Drawing.Size(537, 274);
             this.mainTab.Style = MetroFramework.MetroColorStyle.Red;
             this.mainTab.TabIndex = 10;
@@ -190,6 +192,8 @@
             // visPage
             // 
             this.visPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.visPage.Controls.Add(this.dIndicatorButton);
+            this.visPage.Controls.Add(this.dIndicatorTXT);
             this.visPage.Controls.Add(this.chamsSettingsButton);
             this.visPage.Controls.Add(this.glowSettingsButton);
             this.visPage.Controls.Add(this.bombTrajectTXT);
@@ -253,7 +257,7 @@
             this.bombTrajectTXT.AutoSize = true;
             this.bombTrajectTXT.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.bombTrajectTXT.ForeColor = System.Drawing.Color.Yellow;
-            this.bombTrajectTXT.Location = new System.Drawing.Point(259, 87);
+            this.bombTrajectTXT.Location = new System.Drawing.Point(259, 84);
             this.bombTrajectTXT.Name = "bombTrajectTXT";
             this.bombTrajectTXT.Size = new System.Drawing.Size(115, 19);
             this.bombTrajectTXT.Style = MetroFramework.MetroColorStyle.White;
@@ -267,7 +271,7 @@
             // 
             this.bombTrajectButton.AutoSize = true;
             this.bombTrajectButton.Enabled = false;
-            this.bombTrajectButton.Location = new System.Drawing.Point(417, 87);
+            this.bombTrajectButton.Location = new System.Drawing.Point(417, 86);
             this.bombTrajectButton.Name = "bombTrajectButton";
             this.bombTrajectButton.Size = new System.Drawing.Size(80, 17);
             this.bombTrajectButton.Style = MetroFramework.MetroColorStyle.Red;
@@ -283,7 +287,7 @@
             this.removeScopeTXT.AutoSize = true;
             this.removeScopeTXT.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.removeScopeTXT.ForeColor = System.Drawing.Color.Yellow;
-            this.removeScopeTXT.Location = new System.Drawing.Point(16, 67);
+            this.removeScopeTXT.Location = new System.Drawing.Point(15, 62);
             this.removeScopeTXT.Name = "removeScopeTXT";
             this.removeScopeTXT.Size = new System.Drawing.Size(122, 19);
             this.removeScopeTXT.Style = MetroFramework.MetroColorStyle.White;
@@ -296,7 +300,7 @@
             // removeScopeButton
             // 
             this.removeScopeButton.AutoSize = true;
-            this.removeScopeButton.Location = new System.Drawing.Point(173, 67);
+            this.removeScopeButton.Location = new System.Drawing.Point(173, 64);
             this.removeScopeButton.Name = "removeScopeButton";
             this.removeScopeButton.Size = new System.Drawing.Size(80, 17);
             this.removeScopeButton.Style = MetroFramework.MetroColorStyle.Red;
@@ -310,7 +314,7 @@
             // NoSmokeButton
             // 
             this.NoSmokeButton.AutoSize = true;
-            this.NoSmokeButton.Location = new System.Drawing.Point(417, 66);
+            this.NoSmokeButton.Location = new System.Drawing.Point(417, 64);
             this.NoSmokeButton.Name = "NoSmokeButton";
             this.NoSmokeButton.Size = new System.Drawing.Size(80, 17);
             this.NoSmokeButton.Style = MetroFramework.MetroColorStyle.Red;
@@ -326,7 +330,7 @@
             this.NoSmokeTxt.AutoSize = true;
             this.NoSmokeTxt.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.NoSmokeTxt.ForeColor = System.Drawing.Color.Yellow;
-            this.NoSmokeTxt.Location = new System.Drawing.Point(259, 64);
+            this.NoSmokeTxt.Location = new System.Drawing.Point(259, 62);
             this.NoSmokeTxt.Name = "NoSmokeTxt";
             this.NoSmokeTxt.Size = new System.Drawing.Size(116, 19);
             this.NoSmokeTxt.Style = MetroFramework.MetroColorStyle.White;
@@ -339,7 +343,7 @@
             // noHandsButton
             // 
             this.noHandsButton.AutoSize = true;
-            this.noHandsButton.Location = new System.Drawing.Point(173, 89);
+            this.noHandsButton.Location = new System.Drawing.Point(173, 86);
             this.noHandsButton.Name = "noHandsButton";
             this.noHandsButton.Size = new System.Drawing.Size(80, 17);
             this.noHandsButton.Style = MetroFramework.MetroColorStyle.Red;
@@ -355,7 +359,7 @@
             this.noHandsTXT.AutoSize = true;
             this.noHandsTXT.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.noHandsTXT.ForeColor = System.Drawing.Color.Yellow;
-            this.noHandsTXT.Location = new System.Drawing.Point(17, 89);
+            this.noHandsTXT.Location = new System.Drawing.Point(15, 84);
             this.noHandsTXT.Name = "noHandsTXT";
             this.noHandsTXT.Size = new System.Drawing.Size(122, 19);
             this.noHandsTXT.Style = MetroFramework.MetroColorStyle.White;
@@ -382,7 +386,7 @@
             // chamsButton
             // 
             this.chamsButton.AutoSize = true;
-            this.chamsButton.Location = new System.Drawing.Point(417, 19);
+            this.chamsButton.Location = new System.Drawing.Point(417, 20);
             this.chamsButton.Name = "chamsButton";
             this.chamsButton.Size = new System.Drawing.Size(80, 17);
             this.chamsButton.Style = MetroFramework.MetroColorStyle.Red;
@@ -412,7 +416,7 @@
             this.chamsTXT.AutoSize = true;
             this.chamsTXT.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.chamsTXT.ForeColor = System.Drawing.Color.Yellow;
-            this.chamsTXT.Location = new System.Drawing.Point(259, 17);
+            this.chamsTXT.Location = new System.Drawing.Point(259, 18);
             this.chamsTXT.Name = "chamsTXT";
             this.chamsTXT.Size = new System.Drawing.Size(115, 19);
             this.chamsTXT.Style = MetroFramework.MetroColorStyle.White;
@@ -427,7 +431,7 @@
             this.radarTXT.AutoSize = true;
             this.radarTXT.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.radarTXT.ForeColor = System.Drawing.Color.Yellow;
-            this.radarTXT.Location = new System.Drawing.Point(16, 42);
+            this.radarTXT.Location = new System.Drawing.Point(16, 40);
             this.radarTXT.Name = "radarTXT";
             this.radarTXT.Size = new System.Drawing.Size(121, 19);
             this.radarTXT.Style = MetroFramework.MetroColorStyle.White;
@@ -440,7 +444,7 @@
             // flashButton
             // 
             this.flashButton.AutoSize = true;
-            this.flashButton.Location = new System.Drawing.Point(417, 43);
+            this.flashButton.Location = new System.Drawing.Point(417, 42);
             this.flashButton.Name = "flashButton";
             this.flashButton.Size = new System.Drawing.Size(80, 17);
             this.flashButton.Style = MetroFramework.MetroColorStyle.Red;
@@ -470,7 +474,7 @@
             this.noFlashTXT.AutoSize = true;
             this.noFlashTXT.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.noFlashTXT.ForeColor = System.Drawing.Color.Yellow;
-            this.noFlashTXT.Location = new System.Drawing.Point(259, 41);
+            this.noFlashTXT.Location = new System.Drawing.Point(259, 40);
             this.noFlashTXT.Name = "noFlashTXT";
             this.noFlashTXT.Size = new System.Drawing.Size(114, 19);
             this.noFlashTXT.Style = MetroFramework.MetroColorStyle.White;
@@ -1229,6 +1233,35 @@
             this.realDotHider.VerticalScrollbarHighlightOnWheel = false;
             this.realDotHider.VerticalScrollbarSize = 10;
             // 
+            // dIndicatorButton
+            // 
+            this.dIndicatorButton.AutoSize = true;
+            this.dIndicatorButton.Location = new System.Drawing.Point(173, 108);
+            this.dIndicatorButton.Name = "dIndicatorButton";
+            this.dIndicatorButton.Size = new System.Drawing.Size(80, 17);
+            this.dIndicatorButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.dIndicatorButton.TabIndex = 30;
+            this.dIndicatorButton.Text = "Off";
+            this.dIndicatorButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.dIndicatorButton.UseCustomBackColor = true;
+            this.dIndicatorButton.UseSelectable = true;
+            this.dIndicatorButton.CheckedChanged += new System.EventHandler(this.DIndicatorButton_CheckedChanged);
+            // 
+            // dIndicatorTXT
+            // 
+            this.dIndicatorTXT.AutoSize = true;
+            this.dIndicatorTXT.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.dIndicatorTXT.ForeColor = System.Drawing.Color.Yellow;
+            this.dIndicatorTXT.Location = new System.Drawing.Point(16, 106);
+            this.dIndicatorTXT.Name = "dIndicatorTXT";
+            this.dIndicatorTXT.Size = new System.Drawing.Size(121, 19);
+            this.dIndicatorTXT.Style = MetroFramework.MetroColorStyle.White;
+            this.dIndicatorTXT.TabIndex = 29;
+            this.dIndicatorTXT.Text = "Shoot Indic.     =>";
+            this.dIndicatorTXT.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.dIndicatorTXT.UseCustomBackColor = true;
+            this.dIndicatorTXT.UseStyleColors = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1351,5 +1384,7 @@
         private System.Windows.Forms.PictureBox glowSettingsButton;
         private System.Windows.Forms.PictureBox chamsSettingsButton;
         private System.Windows.Forms.PictureBox triggerSettingsButton;
+        private MetroFramework.Controls.MetroToggle dIndicatorButton;
+        private MetroFramework.Controls.MetroLabel dIndicatorTXT;
     }
 }

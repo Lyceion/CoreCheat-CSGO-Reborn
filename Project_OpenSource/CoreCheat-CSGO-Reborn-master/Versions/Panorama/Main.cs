@@ -323,8 +323,23 @@ namespace CoreCheat_Reborn.Versions.Panorama
                             CLocalPlayer.AddHands();
                         #endregion
 
-                        #region Remove Scope
-                        if (CheatStatus.RemoveScopeActive)
+                        #region DamageIndicator
+                        if (CheatStatus.DamageIndicatorActive)
+                        {
+                            if (CLocalPlayer.TotalHits > VisualConfig.Hits)
+                            {
+                                VisualConfig.Hits = CLocalPlayer.TotalHits;
+                                CLocalPlayer.HealthShotBoostTime = 0.5f;
+                            }
+                            if (CLocalPlayer.isDead)
+                                VisualConfig.Hits = 0;
+                        }
+                        else
+                            VisualConfig.Hits = 0;
+                    #endregion
+
+                    #region Remove Scope
+                    if (CheatStatus.RemoveScopeActive)
                             if(CLocalPlayer.ScopeLevel != ScopeLevels.NOTSCOPED)
                                 CLocalPlayer.Scoped = false;
                         #endregion
@@ -549,6 +564,22 @@ namespace CoreCheat_Reborn.Versions.Panorama
             {
                 Console.Beep((int)BeepVoice.LOWFREQ, (int)BeepVoice.DURATION);
                 CheatStatus.BombTrajectoryActive = false;
+            }
+        }
+        #endregion
+
+        #region Damage Indicator Buttons
+        private void DIndicatorButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (dIndicatorButton.Checked)
+            {
+                Console.Beep((int)BeepVoice.HIGHFREQ, (int)BeepVoice.DURATION);
+                CheatStatus.DamageIndicatorActive = true;
+            }
+            else
+            {
+                Console.Beep((int)BeepVoice.LOWFREQ, (int)BeepVoice.DURATION);
+                CheatStatus.DamageIndicatorActive = false;
             }
         }
         #endregion

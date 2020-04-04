@@ -17,6 +17,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
             public static bool NoHandsActive = false;
             public static bool RemoveScopeActive = false;
             public static bool BombTrajectoryActive = false;
+            public static bool DamageIndicatorActive = false;
 
             public static bool BunnyActive = false;
 
@@ -96,6 +97,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
                 b = 255,
                 a = 0
             };
+            public static int Hits;
         }
         public static class AssistsConfig
         {

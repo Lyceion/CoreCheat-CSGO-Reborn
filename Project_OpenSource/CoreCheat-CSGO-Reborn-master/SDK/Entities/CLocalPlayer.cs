@@ -426,6 +426,37 @@ namespace CoreCheat_Reborn.SDK.Entities
                 }
             }
         }
+        public static int TotalHits
+        {
+            get
+            {
+                if (BaseAdress != 0)
+                    return CylMem.ReadInt(LocalPlayerBase + m_totalHitsOnServer);
+                else
+                {
+                    ConfigureLocalPlayer();
+                    return CylMem.ReadInt(LocalPlayerBase + m_totalHitsOnServer);
+                }
+            }
+        }
+        public static float HealthShotBoostTime
+        {
+            get
+            {
+                if (BaseAdress != 0)
+                    return CylMem.ReadFloat(LocalPlayerBase + m_flHealthShotBoostExpirationTime);
+                else
+                {
+                    ConfigureLocalPlayer();
+                    return CylMem.ReadFloat(LocalPlayerBase + m_flHealthShotBoostExpirationTime);
+                }
+            }
+            set
+            {
+                if (BaseAdress != 0)
+                    CylMem.WriteFloat(LocalPlayerBase + m_flHealthShotBoostExpirationTime, EngineClient.GameTick + (float)value);
+            }
+        }
         public static int ArmorValue
         {
             get

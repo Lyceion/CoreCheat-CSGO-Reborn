@@ -11,6 +11,8 @@ namespace CoreCheat_Reborn.CheatClasses
             public static Int32 m_zoomLevel = 0x33C0;
             public static Int32 sv_grenade_trajectory = 0xCFD7A0;
             public static Int32 dwClientCmd;
+            public static Int32 m_totalHitsOnServer = 0xA398;
+            public static Int32 m_flHealthShotBoostExpirationTime = 0xA3B8;
         }
         public static class netvars
         {
