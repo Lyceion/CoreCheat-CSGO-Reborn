@@ -237,20 +237,16 @@ namespace CoreCheat_Reborn.SDK.Entities
         }
         public static void ApplyChams(Structs.ColorStruct ChamsColor, float brightness, int EntBase)
         {
-            byte[] bytearray = BitConverter.GetBytes(brightness);
-            int intbrightness = BitConverter.ToInt32(bytearray, 0);
-            int xored = intbrightness ^ ChamsPtr;
-            CylMem.WriteInt(Modules.EngineDLLAdress + model_ambient_min, xored);
+            uint thisPtr = BitConverter.ToUInt32(CylMem.ReadBytes(Modules.EngineDLLAdress + (model_ambient_min - 0x2C), 4), 0);
+            CylMem.WriteBytes(Modules.EngineDLLAdress + model_ambient_min, BitConverter.GetBytes(thisPtr ^ BitConverter.ToInt32(BitConverter.GetBytes(brightness), 0)));
             CylMem.WriteByte(EntBase + 0x70, (byte)ChamsColor.r);
             CylMem.WriteByte(EntBase + 0x71, (byte)ChamsColor.g);
             CylMem.WriteByte(EntBase + 0x72, (byte)ChamsColor.b);
         }
         public static void ClearChams(int EntBase)
         {
-            byte[] bytearray = BitConverter.GetBytes((float)0);
-            int intbrightness = BitConverter.ToInt32(bytearray, 0);
-            int xored = intbrightness ^ ChamsPtr;
-            CylMem.WriteInt(Modules.EngineDLLAdress + model_ambient_min, xored);
+            uint thisPtr = BitConverter.ToUInt32(CylMem.ReadBytes(Modules.EngineDLLAdress + (model_ambient_min - 0x2C), 4), 0);
+            CylMem.WriteBytes(Modules.EngineDLLAdress + model_ambient_min, BitConverter.GetBytes(thisPtr ^ BitConverter.ToInt32(BitConverter.GetBytes(0), 0)));
             CylMem.WriteByte(EntBase + 0x70, (byte)255);
             CylMem.WriteByte(EntBase + 0x71, (byte)255);
             CylMem.WriteByte(EntBase + 0x72, (byte)255);

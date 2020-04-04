@@ -67,7 +67,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
                 b = 255,
                 a = 255
             };
-            public static float ChamsBrightness = 90;
+            public static float ChamsBrightness = 10;
             public static ColorStruct EngineTerroristColor = new ColorStruct()
             {
                 r = 254,

@@ -296,7 +296,6 @@
             // removeScopeButton
             // 
             this.removeScopeButton.AutoSize = true;
-            this.removeScopeButton.Enabled = false;
             this.removeScopeButton.Location = new System.Drawing.Point(173, 67);
             this.removeScopeButton.Name = "removeScopeButton";
             this.removeScopeButton.Size = new System.Drawing.Size(80, 17);
@@ -736,7 +735,6 @@
             this.fovPanel.Controls.Add(this.fovTXT);
             this.fovPanel.Controls.Add(this.fovInfo);
             this.fovPanel.Controls.Add(this.FOVTrack);
-            this.fovPanel.Enabled = false;
             this.fovPanel.HorizontalScrollbarBarColor = true;
             this.fovPanel.HorizontalScrollbarHighlightOnWheel = false;
             this.fovPanel.HorizontalScrollbarSize = 10;

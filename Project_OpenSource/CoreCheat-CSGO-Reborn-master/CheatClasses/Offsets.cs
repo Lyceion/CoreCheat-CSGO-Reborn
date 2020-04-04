@@ -5,10 +5,10 @@ namespace CoreCheat_Reborn.CheatClasses
     {
         public static class others
         {
-            public static Int32 m_nViewModelIndex = 0x3214;
+            public static Int32 m_nViewModelIndex = 0x29C0;
             public static Int32 m_nModelIndex = 0x258;
             public static Int32 m_iDefaultFOV = 0x332C;
-            public static Int32 m_zoomLevel = 0x33B0;
+            public static Int32 m_zoomLevel = 0x33C0;
             public static Int32 sv_grenade_trajectory = 0xCFD7A0;
             public static Int32 dwClientCmd;
         }
@@ -108,7 +108,7 @@ namespace CoreCheat_Reborn.CheatClasses
             public static Int32 clientstate_last_outgoing_command = 0x4D24;
             public static Int32 clientstate_net_channel = 0x9C;
             public static Int32 convar_name_hash_table = 0x2F0F8;
-            public static Int32 dwClientState = 0x589D9C;
+            public static Int32 dwClientState = 0x589DCC;
             public static Int32 dwClientState_GetLocalPlayer = 0x180;
             public static Int32 dwClientState_IsHLTV = 0x4D40;
             public static Int32 dwClientState_Map = 0x28C;
@@ -125,13 +125,13 @@ namespace CoreCheat_Reborn.CheatClasses
             public static Int32 dwForceJump = 0x51EB650;
             public static Int32 dwForceLeft = 0x3172F98;
             public static Int32 dwForceRight = 0x3172F8C;
-            public static Int32 dwGameDir = 0x6284F8;
+            public static Int32 dwGameDir = 0x6285F8;
             public static Int32 dwGameRulesProxy = 0x525E92C;
             public static Int32 dwGetAllClasses = 0xD53E6C;
-            public static Int32 dwGlobalVars = 0x589AA0;
+            public static Int32 dwGlobalVars = 0x589AD0;
             public static Int32 dwGlowObjectManager = 0x52898B8;
             public static Int32 dwInput = 0x5192F80;
-            public static Int32 dwInterfaceLinkList = 0x8F8304;
+            public static Int32 dwInterfaceLinkList = 0x8F83F4;
             public static Int32 dwLocalPlayer = 0xD2DB84;
             public static Int32 dwMouseEnable = 0xD33728;
             public static Int32 dwMouseEnablePtr = 0xD336F8;
@@ -147,7 +147,7 @@ namespace CoreCheat_Reborn.CheatClasses
             public static Int32 dwZoomSensitivityRatioPtr = 0xD385D0;
             public static Int32 dwbSendPackets = 0xD3A0A;
             public static Int32 dwppDirect3DDevice9 = 0xA7030;
-            public static Int32 find_hud_element = 0x2B28C0A0;
+            public static Int32 find_hud_element = 0x2CB0C0A0;
             public static Int32 force_update_spectator_glow = 0x399022;
             public static Int32 interface_engine_cvar = 0x3E9EC;
             public static Int32 is_c4_owner = 0x3A57F0;
@@ -156,7 +156,7 @@ namespace CoreCheat_Reborn.CheatClasses
             public static Int32 m_pStudioHdr = 0x294C;
             public static Int32 m_pitchClassPtr = 0x5176A08;
             public static Int32 m_yawClassPtr = 0xD33388;
-            public static Int32 model_ambient_min = 0x58CDBC;
+            public static Int32 model_ambient_min = 0x58CDEC;
             public static Int32 set_abs_angles = 0x1CF030;
             public static Int32 set_abs_origin = 0x1CEE70;
         }

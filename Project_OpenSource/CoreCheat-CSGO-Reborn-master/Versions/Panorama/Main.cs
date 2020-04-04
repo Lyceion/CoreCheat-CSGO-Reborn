@@ -324,14 +324,14 @@ namespace CoreCheat_Reborn.Versions.Panorama
                         #endregion
 
                         #region Remove Scope
-                        //if (CheatStatus.RemoveScopeActive)
-                        //    if(CLocalPlayer.ScopeLevel != ScopeLevels.NOTSCOPED)
-                        //        CLocalPlayer.Scoped = false;
+                        if (CheatStatus.RemoveScopeActive)
+                            if(CLocalPlayer.ScopeLevel != ScopeLevels.NOTSCOPED)
+                                CLocalPlayer.Scoped = false;
                         #endregion
 
                         #region ViewModel FOV
-                        //if (CLocalPlayer.ScopeLevel == ScopeLevels.NOTSCOPED)
-                        //    CLocalPlayer.ViewModelFOV = MiscConfig.ViewModelFOVValue;
+                        if (CLocalPlayer.ScopeLevel == ScopeLevels.NOTSCOPED)
+                            CLocalPlayer.ViewModelFOV = MiscConfig.ViewModelFOVValue;
                         #endregion
 
                         #region Recoil Control System
@@ -554,6 +554,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
         #endregion
 
         #endregion
+
         #region Assists
 
         #region Trigger Buttons

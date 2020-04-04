@@ -78,7 +78,7 @@
             this.chamsBrightnessTrack.TabIndex = 14;
             this.chamsBrightnessTrack.Text = "Chams Brightness:";
             this.chamsBrightnessTrack.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.chamsBrightnessTrack.Value = 90;
+            this.chamsBrightnessTrack.Value = 10;
             this.chamsBrightnessTrack.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ChamsBrightnessTrack_Scroll);
             // 
             // chamsBrightnessTXT
@@ -103,7 +103,7 @@
             this.chamsBrightnessValueTXT.Size = new System.Drawing.Size(25, 19);
             this.chamsBrightnessValueTXT.Style = MetroFramework.MetroColorStyle.Silver;
             this.chamsBrightnessValueTXT.TabIndex = 16;
-            this.chamsBrightnessValueTXT.Text = "90";
+            this.chamsBrightnessValueTXT.Text = "10";
             this.chamsBrightnessValueTXT.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.chamsBrightnessValueTXT.UseCustomBackColor = true;
             // 

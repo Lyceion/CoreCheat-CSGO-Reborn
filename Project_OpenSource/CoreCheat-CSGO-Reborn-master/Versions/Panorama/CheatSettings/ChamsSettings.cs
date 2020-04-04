@@ -12,11 +12,13 @@ namespace CoreCheat_Reborn.Versions.Panorama.CheatSettings
         {
             InitializeComponent();
             chamsColor.SelectedIndex = chamsColorIndex;
+            chamsBrightnessTrack.Value = Convert.ToInt32(VisualConfig.ChamsBrightness);
+            chamsBrightnessValueTXT.Text = VisualConfig.ChamsBrightness.ToString();
         }
 
         private void ChamsBrightnessTrack_Scroll(object sender, ScrollEventArgs e)
         {
-            VisualConfig.ChamsBrightness = chamsBrightnessTrack.Value;
+            VisualConfig.ChamsBrightness = Convert.ToSingle(chamsBrightnessTrack.Value);
             chamsBrightnessValueTXT.Text = VisualConfig.ChamsBrightness.ToString();
         }
 

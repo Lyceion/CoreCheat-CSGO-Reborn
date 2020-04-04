@@ -262,23 +262,6 @@ namespace CoreCheat_Reborn.SDK.Entities
                 }
             }
         }
-        //public static int ScopeLevelInt()
-        //{
-        //        if (BaseAdress != 0)
-        //        {
-        //            int ActiveWeapon = CylMem.ReadInt(LocalPlayerBase + m_hActiveWeapon) & 0xFFF;
-        //            ActiveWeapon = CylMem.ReadInt(Modules.ClientDLLAdress + dwEntityList + (ActiveWeapon - 1) * 0x10);
-        //            return CylMem.ReadInt(ActiveWeapon + m_zoomLevel);
-
-        //        }
-        //        else
-        //        {
-        //            ConfigureLocalPlayer();
-        //            int ActiveWeapon = CylMem.ReadInt(LocalPlayerBase + m_hActiveWeapon) & 0xFFF;
-        //            ActiveWeapon = CylMem.ReadInt(Modules.ClientDLLAdress + dwEntityList + (ActiveWeapon - 1) * 0x10);
-        //            CylMem.ReadInt(ActiveWeapon + m_zoomLevel);
-        //        }
-        //}
         public static string WeaponName
         {
             get
