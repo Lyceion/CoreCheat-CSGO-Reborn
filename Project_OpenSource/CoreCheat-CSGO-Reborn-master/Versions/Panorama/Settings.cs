@@ -125,7 +125,8 @@ namespace CoreCheat_Reborn.Versions.Panorama
         }
         public static class AimBotConfig
         {
-
+            public static Bones SelectedBone = Bones.NECK;
+            public static KeysList LockKey = KeysList.X;
         }
     }
 }

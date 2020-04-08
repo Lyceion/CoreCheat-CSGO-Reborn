@@ -1,5 +1,7 @@
 ﻿using CoreCheat_Reborn.SDK.Controllers;
+using CoreCheat_Reborn.CheatClasses;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
@@ -14,6 +16,16 @@ namespace CoreCheat_Reborn.CheatClasses
         public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
         [DllImport("user32.dll")]
         public static extern short GetAsyncKeyState(Keys vKey);
+        [DllImport("user32.dll")]
+        public static extern bool GetClientRect(
+    IntPtr hwnd,
+    out Structs.Rect rectangle
+    );
+        [DllImport("user32.dll")]
+        private static extern bool ClientToScreen(
+            IntPtr hWnd,
+            ref Point lpPoint
+            );
         public static void Wait(int ms)
         {
             DateTime start = DateTime.Now;
@@ -39,14 +51,25 @@ namespace CoreCheat_Reborn.CheatClasses
         {
             //CoreCheat_Reborn.Debugger.Debugger = new CoreCheat_Reborn.Debugger(CheatName, Color.White, MetroFramework.MetroColorStyle.Red);
         }
-        public static Vector3 GetBonePos(int target, int bone)
+        public static Vector3 GetBonePos(int target, Enums.Bones bone)
         {
             int bMatrix = CylMem.ReadInt(target + Offsets.netvars.m_dwBoneMatrix);
             Vector3 vec = new Vector3();
-            vec.X = CylMem.ReadFloat(bMatrix + (0x30 * bone) + 0xC);
-            vec.Y = CylMem.ReadFloat(bMatrix + (0x30 * bone) + 0x1C);
-            vec.Z = CylMem.ReadFloat(bMatrix + (0x30 * bone) + 0x2C);
+            vec.X = CylMem.ReadFloat(bMatrix + (0x30 * (int)bone) + 0xC);
+            vec.Y = CylMem.ReadFloat(bMatrix + (0x30 * (int)bone) + 0x1C);
+            vec.Z = CylMem.ReadFloat(bMatrix + (0x30 * (int)bone) + 0x2C);
             return vec;
+        }
+        public static Rectangle GetWindowRect()
+        {
+            int mil = DateTime.Now.Millisecond;
+            Structs.Rect rect;
+            GetClientRect(CylMem.ProcessHandle, out rect);
+            var p = new Point(0, 0);
+            ClientToScreen(CylMem.ProcessHandle, ref p);
+            rect.Left = p.X;
+            rect.Top = p.Y;
+            return new Rectangle(p.X, p.Y, rect.Right, rect.Bottom);
         }
     }
 }

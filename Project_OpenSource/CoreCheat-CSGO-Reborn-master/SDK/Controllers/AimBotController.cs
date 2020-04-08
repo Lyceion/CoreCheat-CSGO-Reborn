@@ -56,6 +56,16 @@ namespace CoreCheat_Reborn.SDK.Controllers
         {
             return CalcAngle(from_vector, to);
         }
+        public Vector3 FixBonePos(Vector3 a, Vector3 b)
+        {
+            Vector3 anglesb = new Vector3();
+
+            Vector3 delta = a - b;
+
+            CalcAngle(delta, anglesb);
+
+            return anglesb;
+        }
         public Vector3 CalcAngle(Vector3 from,Vector3 to)
         {
             Vector3 angle = new Vector3();
@@ -68,6 +78,7 @@ namespace CoreCheat_Reborn.SDK.Controllers
             if (double.IsNaN(angle.X)) angle.X = 0; 
             if (double.IsNaN(angle.Y))angle.Y = 0; 
             if (dx >= 0.0) { angle.Y += 180.0f; }
+            if (dx < 0.0) { angle.Y -= 180.0f; }
             return angle;
         }
         public void SmoothAim(Vector3 to,int frame=200)

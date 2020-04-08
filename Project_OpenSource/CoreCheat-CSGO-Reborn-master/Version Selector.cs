@@ -15,7 +15,7 @@ namespace CoreCheat_Reborn
         {
             InitializeComponent();
             DataWrap();
-            snd.Play();
+            //snd.Play();
             Opacity = 0;
         }
         private void vSelector_Load(object sender, EventArgs e)
@@ -24,6 +24,7 @@ namespace CoreCheat_Reborn
             fadeInTimer.Interval = 30;
             fadeInTimer.Tick += new EventHandler(fadeIn);
             fadeInTimer.Start();
+            MusicsLib.MusicLib.EngineRun(MusicsLib.MusicLib.KurtlarVadisi);
         }
         void fadeIn(object sender, EventArgs e)
         {

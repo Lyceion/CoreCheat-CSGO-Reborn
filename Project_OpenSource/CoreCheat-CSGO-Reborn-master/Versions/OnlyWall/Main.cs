@@ -8,8 +8,7 @@ using CoreCheat_Reborn.CheatClasses;
 using CoreCheat_Reborn.SDK.Controllers;
 using static CoreCheat_Reborn.CheatClasses.Enums;
 using static CoreCheat_Reborn.CheatClasses.Structs;
-using static CoreCheat_Reborn.CheatClasses.Offsets.netvars;
-using static CoreCheat_Reborn.CheatClasses.Offsets.signatures;
+using CoreCheat_Reborn.Features;
 
 namespace CoreCheat_Reborn.Versions.OnlyWall
 {
@@ -35,9 +34,12 @@ namespace CoreCheat_Reborn.Versions.OnlyWall
             CylMem.OpenProcess(p[0].Id);
             Modules.ClientDLLAdress = Modules.GetModule("csgo", Modules.ClientDLLName);
             Modules.EngineDLLAdress = Modules.GetModule("csgo", Modules.EngineDLLName);
+            OffsetUpdater.Updater.GetNetvars();
+            OffsetUpdater.Updater.ScanAllPatterns();
             Thread Cheats = new Thread(new ThreadStart(MainThread));
             Cheats.Start();
         }
+
         private static void MainThread()
         {
             GlowStruct GlowRed = new GlowStruct()
@@ -60,20 +62,7 @@ namespace CoreCheat_Reborn.Versions.OnlyWall
                 {
                     if (CLocalPlayer.IsPlaying)
                     {
-                        for (int i = 0; i <= EngineClient.MaxPlayer; i++)
-                        {
-                            int EntBase = CylMem.ReadInt(Modules.ClientDLLAdress + dwEntityList + i * 0x10);
-                            if (EntBase == 0) continue;
-                            if (CEntityPlayer.isDormant(EntBase)) continue;
-                            if (CEntityPlayer.isDead(EntBase)) continue;
-                            if (CEntityPlayer.Team(EntBase) == Teams.NONE || CEntityPlayer.Team(EntBase) == Teams.SPECTATOR) continue;
-                            if (CEntityPlayer.WeaponName(EntBase) == "NONE") continue;
-                            int GlowIndex = CylMem.ReadInt(EntBase + m_iGlowIndex);
-                            if (CEntityPlayer.Team(EntBase) == Teams.TERRORIST && CheatActive && CEntityPlayer.isAlive(EntBase)) //T
-                                CEntityPlayer.Glow(GlowIndex, GlowRed, GlowStyle.NORMAL, GlowType.NORMAL);
-                            if (CEntityPlayer.Team(EntBase) == Teams.ANTI_TERRORIST && CheatActive && CEntityPlayer.isAlive(EntBase)) //AT
-                                CEntityPlayer.Glow(GlowIndex, GlowBlue, GlowStyle.NORMAL, GlowType.NORMAL);
-                        }
+                        GlowESP.RunGlowESPOWALL(GlowRed, GlowBlue, CheatActive);
                         Thread.Sleep((int)CheatPerf);
                     }
                 }

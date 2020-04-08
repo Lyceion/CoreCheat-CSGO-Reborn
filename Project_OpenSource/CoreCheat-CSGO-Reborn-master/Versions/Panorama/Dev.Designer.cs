@@ -33,6 +33,7 @@
             this.statusTXT = new MetroFramework.Controls.MetroLabel();
             this.infogetter = new System.Windows.Forms.Timer(this.components);
             this.testBtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // statusTXT
@@ -62,12 +63,23 @@
             this.testBtn.UseVisualStyleBackColor = true;
             this.testBtn.Click += new System.EventHandler(this.TestBtn_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(33, 599);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(41, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "HIDE";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // Dev
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(243, 632);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.testBtn);
             this.Controls.Add(this.statusTXT);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -94,5 +106,6 @@
         private MetroFramework.Controls.MetroLabel statusTXT;
         private System.Windows.Forms.Timer infogetter;
         private System.Windows.Forms.Button testBtn;
+        private System.Windows.Forms.Button button1;
     }
 }

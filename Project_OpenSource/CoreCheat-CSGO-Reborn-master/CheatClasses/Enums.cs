@@ -2,6 +2,18 @@
 {
     class Enums
     {
+        public enum Bones
+        {
+            HEAD = 8,
+            NECK = 7,
+            BODY = 6,
+            RIGHT_HAND = 39,
+            LEFT_HAND = 13,
+            RIGHT_LEG = 73,
+            LEFT_LEG = 66,
+            RIGHT_FOOT = 74,
+            LEFT_FOOT = 67
+        }
         public enum Teams
         {
             NONE = 0,

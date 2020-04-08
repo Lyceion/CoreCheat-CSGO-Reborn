@@ -12,7 +12,6 @@ namespace CoreCheat_Reborn.SDK.Entities
 {
     class CEntityPlayer
     {
-        private static readonly int ChamsPtr = EngineClient.ClientState + model_ambient_min - 0x2C;
         private static readonly int GlowObject = CylMem.ReadInt(Modules.ClientDLLAdress + dwGlowObjectManager);
         public static int GetEntity(int i)
         {
@@ -131,11 +130,11 @@ namespace CoreCheat_Reborn.SDK.Entities
         {
             if (entB != 0)
             {
-                return CylMem.ReadStringASCII(entB + m_szLastPlaceName, 32);
+                return CylMem.ReadString(entB + m_szLastPlaceName);
             }
             else
             {
-                return CylMem.ReadStringASCII(entB + m_szLastPlaceName, 32);
+                return CylMem.ReadString(entB + m_szLastPlaceName);
             }
         }
         public static int ArmorValue(int entB)
@@ -200,7 +199,7 @@ namespace CoreCheat_Reborn.SDK.Entities
         }
         public static string GetModelName(int entB)
         {
-            return CylMem.ReadStringASCII(GetModelIndex(entB) + 0x4, 128);
+            return CylMem.ReadString(GetModelIndex(entB) + 0x4);
         }
         private static int GetModelIndex(int entB)
         {

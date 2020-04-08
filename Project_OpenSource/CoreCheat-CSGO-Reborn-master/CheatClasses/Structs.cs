@@ -28,5 +28,10 @@ namespace CoreCheat_Reborn.CheatClasses
             public EntityQuality EntityQualityIndex;
             public float Wear;
         }
+        public struct Rect
+        {
+            public int Left, Top, Right, Bottom;
+        };
+
     }
 }

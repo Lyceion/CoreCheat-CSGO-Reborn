@@ -36,6 +36,8 @@
             this.infoTXT = new System.Windows.Forms.Label();
             this.mainTab = new MetroFramework.Controls.MetroTabControl();
             this.visPage = new MetroFramework.Controls.MetroTabPage();
+            this.dIndicatorButton = new MetroFramework.Controls.MetroToggle();
+            this.dIndicatorTXT = new MetroFramework.Controls.MetroLabel();
             this.chamsSettingsButton = new System.Windows.Forms.PictureBox();
             this.glowSettingsButton = new System.Windows.Forms.PictureBox();
             this.bombTrajectTXT = new MetroFramework.Controls.MetroLabel();
@@ -86,6 +88,19 @@
             this.viewModeTXT = new MetroFramework.Controls.MetroLabel();
             this.bunnyTXT = new MetroFramework.Controls.MetroLabel();
             this.bunnyButton = new MetroFramework.Controls.MetroToggle();
+            this.aimbotPage = new MetroFramework.Controls.MetroTabPage();
+            this.aimKeyCombo = new MetroFramework.Controls.MetroComboBox();
+            this.aimKeysTXT = new System.Windows.Forms.Label();
+            this.boneRLEG = new MetroFramework.Controls.MetroRadioButton();
+            this.boneLLEG = new MetroFramework.Controls.MetroRadioButton();
+            this.boneBODY = new MetroFramework.Controls.MetroRadioButton();
+            this.boneNECK = new MetroFramework.Controls.MetroRadioButton();
+            this.boneHEAD = new MetroFramework.Controls.MetroRadioButton();
+            this.smoothTXT = new MetroFramework.Controls.MetroLabel();
+            this.aimbotTXT = new MetroFramework.Controls.MetroLabel();
+            this.aimbotButton = new MetroFramework.Controls.MetroToggle();
+            this.smoothTrack = new MetroFramework.Controls.MetroTrackBar();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.settingsPage = new MetroFramework.Controls.MetroTabPage();
             this.fpsInfoTR = new System.Windows.Forms.Label();
             this.fpsInfo = new System.Windows.Forms.Label();
@@ -100,8 +115,7 @@
             this.titleTimer = new System.Windows.Forms.Timer(this.components);
             this.dotHider = new MetroFramework.Controls.MetroPanel();
             this.realDotHider = new MetroFramework.Controls.MetroPanel();
-            this.dIndicatorButton = new MetroFramework.Controls.MetroToggle();
-            this.dIndicatorTXT = new MetroFramework.Controls.MetroLabel();
+            this.devMenuButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPic)).BeginInit();
             this.mainTab.SuspendLayout();
@@ -117,6 +131,8 @@
             this.bhopSettings.SuspendLayout();
             this.clantagPanel.SuspendLayout();
             this.viewFOVPanel.SuspendLayout();
+            this.aimbotPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.settingsPage.SuspendLayout();
             this.fpsGroup.SuspendLayout();
             this.SuspendLayout();
@@ -178,6 +194,7 @@
             this.mainTab.Controls.Add(this.visPage);
             this.mainTab.Controls.Add(this.assPage);
             this.mainTab.Controls.Add(this.miscPage);
+            this.mainTab.Controls.Add(this.aimbotPage);
             this.mainTab.Controls.Add(this.settingsPage);
             this.mainTab.Location = new System.Drawing.Point(0, 0);
             this.mainTab.Name = "mainTab";
@@ -227,6 +244,35 @@
             this.visPage.VerticalScrollbarBarColor = true;
             this.visPage.VerticalScrollbarHighlightOnWheel = false;
             this.visPage.VerticalScrollbarSize = 10;
+            // 
+            // dIndicatorButton
+            // 
+            this.dIndicatorButton.AutoSize = true;
+            this.dIndicatorButton.Location = new System.Drawing.Point(173, 108);
+            this.dIndicatorButton.Name = "dIndicatorButton";
+            this.dIndicatorButton.Size = new System.Drawing.Size(80, 17);
+            this.dIndicatorButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.dIndicatorButton.TabIndex = 30;
+            this.dIndicatorButton.Text = "Off";
+            this.dIndicatorButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.dIndicatorButton.UseCustomBackColor = true;
+            this.dIndicatorButton.UseSelectable = true;
+            this.dIndicatorButton.CheckedChanged += new System.EventHandler(this.DIndicatorButton_CheckedChanged);
+            // 
+            // dIndicatorTXT
+            // 
+            this.dIndicatorTXT.AutoSize = true;
+            this.dIndicatorTXT.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.dIndicatorTXT.ForeColor = System.Drawing.Color.Yellow;
+            this.dIndicatorTXT.Location = new System.Drawing.Point(16, 106);
+            this.dIndicatorTXT.Name = "dIndicatorTXT";
+            this.dIndicatorTXT.Size = new System.Drawing.Size(121, 19);
+            this.dIndicatorTXT.Style = MetroFramework.MetroColorStyle.White;
+            this.dIndicatorTXT.TabIndex = 29;
+            this.dIndicatorTXT.Text = "Shoot Indic.     =>";
+            this.dIndicatorTXT.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.dIndicatorTXT.UseCustomBackColor = true;
+            this.dIndicatorTXT.UseStyleColors = true;
             // 
             // chamsSettingsButton
             // 
@@ -890,7 +936,8 @@
             this.SelectedClantagText.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.SelectedClantagText.CustomButton.UseSelectable = true;
             this.SelectedClantagText.CustomButton.Visible = false;
-            this.SelectedClantagText.Lines = new string[0];
+            this.SelectedClantagText.Lines = new string[] {
+        "Core-Project"};
             this.SelectedClantagText.Location = new System.Drawing.Point(8, 27);
             this.SelectedClantagText.MaxLength = 15;
             this.SelectedClantagText.Name = "SelectedClantagText";
@@ -903,6 +950,7 @@
             this.SelectedClantagText.Size = new System.Drawing.Size(136, 23);
             this.SelectedClantagText.Style = MetroFramework.MetroColorStyle.Red;
             this.SelectedClantagText.TabIndex = 2;
+            this.SelectedClantagText.Text = "Core-Project";
             this.SelectedClantagText.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SelectedClantagText.UseSelectable = true;
             this.SelectedClantagText.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -1030,9 +1078,220 @@
             this.bunnyButton.UseSelectable = true;
             this.bunnyButton.CheckedChanged += new System.EventHandler(this.BunnyButton_CheckedChanged);
             // 
+            // aimbotPage
+            // 
+            this.aimbotPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.aimbotPage.Controls.Add(this.aimKeyCombo);
+            this.aimbotPage.Controls.Add(this.aimKeysTXT);
+            this.aimbotPage.Controls.Add(this.boneRLEG);
+            this.aimbotPage.Controls.Add(this.boneLLEG);
+            this.aimbotPage.Controls.Add(this.boneBODY);
+            this.aimbotPage.Controls.Add(this.boneNECK);
+            this.aimbotPage.Controls.Add(this.boneHEAD);
+            this.aimbotPage.Controls.Add(this.smoothTXT);
+            this.aimbotPage.Controls.Add(this.aimbotTXT);
+            this.aimbotPage.Controls.Add(this.aimbotButton);
+            this.aimbotPage.Controls.Add(this.smoothTrack);
+            this.aimbotPage.Controls.Add(this.pictureBox1);
+            this.aimbotPage.HorizontalScrollbarBarColor = true;
+            this.aimbotPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.aimbotPage.HorizontalScrollbarSize = 10;
+            this.aimbotPage.Location = new System.Drawing.Point(4, 38);
+            this.aimbotPage.Name = "aimbotPage";
+            this.aimbotPage.Size = new System.Drawing.Size(529, 232);
+            this.aimbotPage.TabIndex = 5;
+            this.aimbotPage.Text = "[ 🐲 ] Aimbot";
+            this.aimbotPage.UseCustomBackColor = true;
+            this.aimbotPage.VerticalScrollbarBarColor = true;
+            this.aimbotPage.VerticalScrollbarHighlightOnWheel = false;
+            this.aimbotPage.VerticalScrollbarSize = 10;
+            // 
+            // aimKeyCombo
+            // 
+            this.aimKeyCombo.FormattingEnabled = true;
+            this.aimKeyCombo.ItemHeight = 23;
+            this.aimKeyCombo.Items.AddRange(new object[] {
+            "E",
+            "X",
+            "V",
+            "<",
+            "Left Click"});
+            this.aimKeyCombo.Location = new System.Drawing.Point(58, 128);
+            this.aimKeyCombo.Name = "aimKeyCombo";
+            this.aimKeyCombo.Size = new System.Drawing.Size(183, 29);
+            this.aimKeyCombo.Style = MetroFramework.MetroColorStyle.Red;
+            this.aimKeyCombo.TabIndex = 22;
+            this.aimKeyCombo.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.aimKeyCombo.UseSelectable = true;
+            this.aimKeyCombo.UseStyleColors = true;
+            this.aimKeyCombo.SelectedIndexChanged += new System.EventHandler(this.AimKeyCombo_SelectedIndexChanged);
+            // 
+            // aimKeysTXT
+            // 
+            this.aimKeysTXT.AutoSize = true;
+            this.aimKeysTXT.ForeColor = System.Drawing.Color.White;
+            this.aimKeysTXT.Location = new System.Drawing.Point(12, 136);
+            this.aimKeysTXT.Name = "aimKeysTXT";
+            this.aimKeysTXT.Size = new System.Drawing.Size(209, 52);
+            this.aimKeysTXT.TabIndex = 21;
+            this.aimKeysTXT.Text = "KEY ->\r\n\r\nNote: Keys mode only works while you are \r\nholding key!";
+            // 
+            // boneRLEG
+            // 
+            this.boneRLEG.AutoSize = true;
+            this.boneRLEG.BackColor = System.Drawing.Color.Transparent;
+            this.boneRLEG.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.boneRLEG.FontWeight = MetroFramework.MetroCheckBoxWeight.Light;
+            this.boneRLEG.Location = new System.Drawing.Point(439, 190);
+            this.boneRLEG.Name = "boneRLEG";
+            this.boneRLEG.Size = new System.Drawing.Size(70, 15);
+            this.boneRLEG.Style = MetroFramework.MetroColorStyle.Red;
+            this.boneRLEG.TabIndex = 18;
+            this.boneRLEG.Text = "Right Leg";
+            this.boneRLEG.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.boneRLEG.UseCustomBackColor = true;
+            this.boneRLEG.UseSelectable = true;
+            this.boneRLEG.CheckedChanged += new System.EventHandler(this.BoneRLEG_CheckedChanged);
+            // 
+            // boneLLEG
+            // 
+            this.boneLLEG.AutoSize = true;
+            this.boneLLEG.BackColor = System.Drawing.Color.Transparent;
+            this.boneLLEG.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.boneLLEG.FontWeight = MetroFramework.MetroCheckBoxWeight.Light;
+            this.boneLLEG.Location = new System.Drawing.Point(400, 142);
+            this.boneLLEG.Name = "boneLLEG";
+            this.boneLLEG.Size = new System.Drawing.Size(62, 15);
+            this.boneLLEG.Style = MetroFramework.MetroColorStyle.Red;
+            this.boneLLEG.TabIndex = 17;
+            this.boneLLEG.Text = "Left Leg";
+            this.boneLLEG.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.boneLLEG.UseCustomBackColor = true;
+            this.boneLLEG.UseSelectable = true;
+            this.boneLLEG.CheckedChanged += new System.EventHandler(this.BoneLLEG_CheckedChanged);
+            // 
+            // boneBODY
+            // 
+            this.boneBODY.AutoSize = true;
+            this.boneBODY.BackColor = System.Drawing.Color.Transparent;
+            this.boneBODY.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.boneBODY.FontWeight = MetroFramework.MetroCheckBoxWeight.Light;
+            this.boneBODY.Location = new System.Drawing.Point(460, 64);
+            this.boneBODY.Name = "boneBODY";
+            this.boneBODY.Size = new System.Drawing.Size(49, 15);
+            this.boneBODY.Style = MetroFramework.MetroColorStyle.Red;
+            this.boneBODY.TabIndex = 16;
+            this.boneBODY.Text = "Body";
+            this.boneBODY.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.boneBODY.UseCustomBackColor = true;
+            this.boneBODY.UseSelectable = true;
+            this.boneBODY.CheckedChanged += new System.EventHandler(this.BoneBODY_CheckedChanged);
+            // 
+            // boneNECK
+            // 
+            this.boneNECK.AutoSize = true;
+            this.boneNECK.BackColor = System.Drawing.Color.Transparent;
+            this.boneNECK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.boneNECK.Checked = true;
+            this.boneNECK.FontWeight = MetroFramework.MetroCheckBoxWeight.Light;
+            this.boneNECK.Location = new System.Drawing.Point(478, 28);
+            this.boneNECK.Name = "boneNECK";
+            this.boneNECK.Size = new System.Drawing.Size(48, 15);
+            this.boneNECK.Style = MetroFramework.MetroColorStyle.Red;
+            this.boneNECK.TabIndex = 15;
+            this.boneNECK.TabStop = true;
+            this.boneNECK.Text = "Neck";
+            this.boneNECK.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.boneNECK.UseCustomBackColor = true;
+            this.boneNECK.UseSelectable = true;
+            this.boneNECK.CheckedChanged += new System.EventHandler(this.BoneNECK_CheckedChanged);
+            // 
+            // boneHEAD
+            // 
+            this.boneHEAD.AutoSize = true;
+            this.boneHEAD.BackColor = System.Drawing.Color.Transparent;
+            this.boneHEAD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.boneHEAD.FontWeight = MetroFramework.MetroCheckBoxWeight.Light;
+            this.boneHEAD.Location = new System.Drawing.Point(400, 3);
+            this.boneHEAD.Name = "boneHEAD";
+            this.boneHEAD.Size = new System.Drawing.Size(50, 15);
+            this.boneHEAD.Style = MetroFramework.MetroColorStyle.Red;
+            this.boneHEAD.TabIndex = 14;
+            this.boneHEAD.Text = "Head";
+            this.boneHEAD.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.boneHEAD.UseCustomBackColor = true;
+            this.boneHEAD.UseSelectable = true;
+            this.boneHEAD.CheckedChanged += new System.EventHandler(this.BoneHEAD_CheckedChanged);
+            // 
+            // smoothTXT
+            // 
+            this.smoothTXT.AutoSize = true;
+            this.smoothTXT.Location = new System.Drawing.Point(15, 61);
+            this.smoothTXT.Name = "smoothTXT";
+            this.smoothTXT.Size = new System.Drawing.Size(82, 19);
+            this.smoothTXT.Style = MetroFramework.MetroColorStyle.Red;
+            this.smoothTXT.TabIndex = 13;
+            this.smoothTXT.Text = "Smoothness:";
+            this.smoothTXT.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.smoothTXT.UseCustomBackColor = true;
+            this.smoothTXT.UseStyleColors = true;
+            // 
+            // aimbotTXT
+            // 
+            this.aimbotTXT.AutoSize = true;
+            this.aimbotTXT.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.aimbotTXT.ForeColor = System.Drawing.Color.Yellow;
+            this.aimbotTXT.Location = new System.Drawing.Point(15, 18);
+            this.aimbotTXT.Name = "aimbotTXT";
+            this.aimbotTXT.Size = new System.Drawing.Size(122, 19);
+            this.aimbotTXT.Style = MetroFramework.MetroColorStyle.White;
+            this.aimbotTXT.TabIndex = 11;
+            this.aimbotTXT.Text = "Aimbot            =>";
+            this.aimbotTXT.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.aimbotTXT.UseCustomBackColor = true;
+            this.aimbotTXT.UseStyleColors = true;
+            // 
+            // aimbotButton
+            // 
+            this.aimbotButton.AutoSize = true;
+            this.aimbotButton.Location = new System.Drawing.Point(173, 20);
+            this.aimbotButton.Name = "aimbotButton";
+            this.aimbotButton.Size = new System.Drawing.Size(80, 17);
+            this.aimbotButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.aimbotButton.TabIndex = 12;
+            this.aimbotButton.Text = "Off";
+            this.aimbotButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.aimbotButton.UseCustomBackColor = true;
+            this.aimbotButton.UseSelectable = true;
+            this.aimbotButton.CheckedChanged += new System.EventHandler(this.AimbotButton_CheckedChanged);
+            // 
+            // smoothTrack
+            // 
+            this.smoothTrack.BackColor = System.Drawing.Color.Transparent;
+            this.smoothTrack.Enabled = false;
+            this.smoothTrack.Location = new System.Drawing.Point(15, 83);
+            this.smoothTrack.Name = "smoothTrack";
+            this.smoothTrack.Size = new System.Drawing.Size(238, 23);
+            this.smoothTrack.Style = MetroFramework.MetroColorStyle.Red;
+            this.smoothTrack.TabIndex = 3;
+            this.smoothTrack.Text = "Smoothness:";
+            this.smoothTrack.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.smoothTrack.UseCustomBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CoreCheat_Reborn.Properties.Resources.MODEL_T;
+            this.pictureBox1.Location = new System.Drawing.Point(329, -77);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(282, 395);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
             // settingsPage
             // 
             this.settingsPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.settingsPage.Controls.Add(this.devMenuButton);
             this.settingsPage.Controls.Add(this.fpsInfoTR);
             this.settingsPage.Controls.Add(this.fpsInfo);
             this.settingsPage.Controls.Add(this.fpsGroup);
@@ -1233,34 +1492,16 @@
             this.realDotHider.VerticalScrollbarHighlightOnWheel = false;
             this.realDotHider.VerticalScrollbarSize = 10;
             // 
-            // dIndicatorButton
+            // devMenuButton
             // 
-            this.dIndicatorButton.AutoSize = true;
-            this.dIndicatorButton.Location = new System.Drawing.Point(173, 108);
-            this.dIndicatorButton.Name = "dIndicatorButton";
-            this.dIndicatorButton.Size = new System.Drawing.Size(80, 17);
-            this.dIndicatorButton.Style = MetroFramework.MetroColorStyle.Red;
-            this.dIndicatorButton.TabIndex = 30;
-            this.dIndicatorButton.Text = "Off";
-            this.dIndicatorButton.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.dIndicatorButton.UseCustomBackColor = true;
-            this.dIndicatorButton.UseSelectable = true;
-            this.dIndicatorButton.CheckedChanged += new System.EventHandler(this.DIndicatorButton_CheckedChanged);
-            // 
-            // dIndicatorTXT
-            // 
-            this.dIndicatorTXT.AutoSize = true;
-            this.dIndicatorTXT.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.dIndicatorTXT.ForeColor = System.Drawing.Color.Yellow;
-            this.dIndicatorTXT.Location = new System.Drawing.Point(16, 106);
-            this.dIndicatorTXT.Name = "dIndicatorTXT";
-            this.dIndicatorTXT.Size = new System.Drawing.Size(121, 19);
-            this.dIndicatorTXT.Style = MetroFramework.MetroColorStyle.White;
-            this.dIndicatorTXT.TabIndex = 29;
-            this.dIndicatorTXT.Text = "Shoot Indic.     =>";
-            this.dIndicatorTXT.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.dIndicatorTXT.UseCustomBackColor = true;
-            this.dIndicatorTXT.UseStyleColors = true;
+            this.devMenuButton.Location = new System.Drawing.Point(471, 196);
+            this.devMenuButton.Name = "devMenuButton";
+            this.devMenuButton.Size = new System.Drawing.Size(44, 23);
+            this.devMenuButton.TabIndex = 6;
+            this.devMenuButton.Text = "DW";
+            this.devMenuButton.UseVisualStyleBackColor = true;
+            this.devMenuButton.Visible = false;
+            this.devMenuButton.Click += new System.EventHandler(this.DevMenuButton_Click);
             // 
             // Main
             // 
@@ -1304,6 +1545,9 @@
             this.clantagPanel.PerformLayout();
             this.viewFOVPanel.ResumeLayout(false);
             this.viewFOVPanel.PerformLayout();
+            this.aimbotPage.ResumeLayout(false);
+            this.aimbotPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.settingsPage.ResumeLayout(false);
             this.settingsPage.PerformLayout();
             this.fpsGroup.ResumeLayout(false);
@@ -1386,5 +1630,19 @@
         private System.Windows.Forms.PictureBox triggerSettingsButton;
         private MetroFramework.Controls.MetroToggle dIndicatorButton;
         private MetroFramework.Controls.MetroLabel dIndicatorTXT;
+        private MetroFramework.Controls.MetroTabPage aimbotPage;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private MetroFramework.Controls.MetroTrackBar smoothTrack;
+        private MetroFramework.Controls.MetroLabel aimbotTXT;
+        private MetroFramework.Controls.MetroToggle aimbotButton;
+        private MetroFramework.Controls.MetroLabel smoothTXT;
+        private MetroFramework.Controls.MetroRadioButton boneHEAD;
+        private MetroFramework.Controls.MetroRadioButton boneNECK;
+        private MetroFramework.Controls.MetroRadioButton boneBODY;
+        private MetroFramework.Controls.MetroRadioButton boneRLEG;
+        private MetroFramework.Controls.MetroRadioButton boneLLEG;
+        private MetroFramework.Controls.MetroComboBox aimKeyCombo;
+        private System.Windows.Forms.Label aimKeysTXT;
+        private System.Windows.Forms.Button devMenuButton;
     }
 }

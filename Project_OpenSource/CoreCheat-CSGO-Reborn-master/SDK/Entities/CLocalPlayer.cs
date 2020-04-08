@@ -8,6 +8,7 @@ using CoreCheat_Reborn.SDK.Managers;
 using System.Numerics;
 using System.Text;
 using System;
+using CoreCheat_Reborn.Features;
 
 namespace CoreCheat_Reborn.SDK.Entities
 {
@@ -201,11 +202,20 @@ namespace CoreCheat_Reborn.SDK.Entities
         {
             get
             {
-                var sexyInfo = CylMem.ReadInt(EngineClient.ClientState + dwClientState_PlayerInfo);
-                sexyInfo = CylMem.ReadInt(sexyInfo + 0x40);
-                sexyInfo = CylMem.ReadInt(sexyInfo + 0xC);
-                sexyInfo = CylMem.ReadInt(sexyInfo + 0x28 + ((1 - 1) * 0x34));
-                return CylMem.ReadStringASCII(sexyInfo, 32);
+                //var sexyInfo = CylMem.ReadInt(EngineClient.ClientState + dwClientState_PlayerInfo);
+                //sexyInfo = CylMem.ReadInt(sexyInfo + 0x40);
+                //sexyInfo = CylMem.ReadInt(sexyInfo + 0xC);
+                //sexyInfo = CylMem.ReadInt(sexyInfo + 0x28 + ((1 - 1) * 0x34));
+                //return CylMem.ReadString(sexyInfo);
+                int radarBasePtr = 0x78;
+                int radarStructSize = 0x174;
+                int radarStructPos = 0x18;
+                int radarBase = CylMem.ReadInt(Modules.ClientDLLAdress + dwRadarBase);
+                int radarPtr = CylMem.ReadInt(radarBase + radarBasePtr);
+                int a = CylMem.ReadInt(Modules.ClientDLLAdress + dwClientState);
+                int ind = CylMem.ReadInt(a + dwClientState_GetLocalPlayer) + 1;
+                var nameAddr = radarPtr + ind * radarStructSize + radarStructPos;
+                return CylMem.ReadString(nameAddr);
             }
         }
         public static bool Scoped
@@ -418,11 +428,11 @@ namespace CoreCheat_Reborn.SDK.Entities
             get
             {
                 if (BaseAdress != 0)
-                    return CylMem.ReadStringASCII(LocalPlayerBase + m_szLastPlaceName, 32);
+                    return CylMem.ReadString(LocalPlayerBase + m_szLastPlaceName);
                 else
                 {
                     ConfigureLocalPlayer();
-                    return CylMem.ReadStringASCII(LocalPlayerBase + m_szLastPlaceName, 32);
+                    return CylMem.ReadString(LocalPlayerBase + m_szLastPlaceName);
                 }
             }
         }
@@ -581,6 +591,55 @@ namespace CoreCheat_Reborn.SDK.Entities
                 }
             }
         }
+        public static Matrix4x4 ViewMatrix
+        {
+            get
+            {
+                if (BaseAdress != 0)
+                    return CylMem.CRead<Matrix4x4>(Modules.ClientDLLAdress + dwViewMatrix);
+                else
+                {
+                    ConfigureLocalPlayer();
+                    return CylMem.CRead<Matrix4x4>(Modules.ClientDLLAdress + dwViewMatrix);
+                }
+            }
+            set
+            {
+                if (BaseAdress != 0)
+                    CylMem.CWrite<Matrix4x4>(Modules.ClientDLLAdress + dwViewMatrix, value);
+                else
+                {
+                    ConfigureLocalPlayer();
+                    CylMem.CWrite<Matrix4x4>(Modules.ClientDLLAdress + dwViewMatrix, value);
+                }
+            }
+        }
+        public static Vector3 VectorOrigin
+        {
+            get
+            {
+                if (BaseAdress != 0)
+                    return CylMem.CRead<Vector3>(LocalPlayerBase + m_vecOrigin);
+                else
+                {
+                    ConfigureLocalPlayer();
+                    return CylMem.CRead<Vector3>(LocalPlayerBase + m_vecOrigin);
+                }
+            }
+        }
+        public static Vector3 VectorEyeLevel
+        {
+            get
+            {
+                if (BaseAdress != 0)
+                    return VectorOrigin + CylMem.CRead<Vector3>(LocalPlayerBase + m_vecViewOffset);
+                else
+                {
+                    ConfigureLocalPlayer();
+                    return VectorOrigin + CylMem.CRead<Vector3>(LocalPlayerBase + m_vecViewOffset);
+                }
+            }
+        }
         public static Vector3 AimPunchAngles
         {
             get
@@ -721,37 +780,21 @@ namespace CoreCheat_Reborn.SDK.Entities
         public static void SetClantag(string Tag, string Name)
         {
             uint a = 0;
-            byte[] shellCode = new byte[]
-            {
-                0x50, // push eax
-                0x51, // push ecx
-                0x52, // push edx
-                0xB8,0x00,0x00,0x00,0x00, // mov eax, fnClantagChanged
-                0xB9,0x00,0x00,0x00,0x00, // mov ecx, tagAddress
-                0xBA,0x00,0x00,0x00,0x00, // mov edx, nameAddress
-                0xFF,0xD0, // call eax
-                0x58, // pop eax
-                0x59, // pop ecx
-                0x5A, // pop edx
-                0xC3, // ret
-                0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, // tag+name,max 32 bytes
-                0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
-            };
             byte[] tagData = Encoding.UTF8.GetBytes(Tag),
                 nameData = Encoding.UTF8.GetBytes(Name);
             int tagSize = Math.Min(tagData.Length, 15),
                 nameSize = Math.Min(nameData.Length, 15),
-                codeSize = shellCode.Length - 32,
+                codeSize = ClanTagChanger.shellCode.Length - 32,
                 allocateSize = codeSize + tagSize + nameSize + 2;
             IntPtr codeAddress = CylMem.NativeMethods.VirtualAllocEx(CylMem.ProcessHandle, IntPtr.Zero, (IntPtr)allocateSize, (uint)CylMem.FreeType.Commit | (uint)CylMem.FreeType.Reserve, (uint)CylMem.MemoryProtection.ExecuteReadWrite);
             int tagAddress = (int)codeAddress + codeSize;
             int nameAddress = tagAddress + tagSize + 1;
-            Buffer.BlockCopy(BitConverter.GetBytes(dwSetClanTag + Modules.EngineDLLAdress), 0, shellCode, 3 + 1, 4);
-            Buffer.BlockCopy(BitConverter.GetBytes(tagAddress), 0, shellCode, 3 + 5 + 1, 4);
-            Buffer.BlockCopy(BitConverter.GetBytes(nameAddress), 0, shellCode, 3 + 5 + 5 + 1, 4);
-            Buffer.BlockCopy(tagData, 0, shellCode, codeSize, tagSize);
-            Buffer.BlockCopy(nameData, 0, shellCode, codeSize + tagSize + 1, nameSize);
-            CylMem.NativeMethods.WriteProcessMemory(CylMem.ProcessHandle, codeAddress, shellCode, (IntPtr)allocateSize, ref a);
+            Buffer.BlockCopy(BitConverter.GetBytes(dwSetClanTag + Modules.EngineDLLAdress), 0, ClanTagChanger.shellCode, 3 + 1, 4);
+            Buffer.BlockCopy(BitConverter.GetBytes(tagAddress), 0, ClanTagChanger.shellCode, 3 + 5 + 1, 4);
+            Buffer.BlockCopy(BitConverter.GetBytes(nameAddress), 0, ClanTagChanger.shellCode, 3 + 5 + 5 + 1, 4);
+            Buffer.BlockCopy(tagData, 0, ClanTagChanger.shellCode, codeSize, tagSize);
+            Buffer.BlockCopy(nameData, 0, ClanTagChanger.shellCode, codeSize + tagSize + 1, nameSize);
+            CylMem.NativeMethods.WriteProcessMemory(CylMem.ProcessHandle, codeAddress, ClanTagChanger.shellCode, (IntPtr)allocateSize, ref a);
             IntPtr hThread = CylMem.NativeMethods.CreateRemoteThread(CylMem.ProcessHandle, IntPtr.Zero, IntPtr.Zero, codeAddress, IntPtr.Zero, 0, IntPtr.Zero);
             CylMem.NativeMethods.WaitForSingleObject(hThread, 0xFFFFFFFF);
             CylMem.NativeMethods.VirtualFreeEx(CylMem.ProcessHandle, codeAddress, IntPtr.Zero, CylMem.FreeType.Release);

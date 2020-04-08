@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Numerics;
 using System.Threading;
 using System.Diagnostics;
 using System.Windows.Forms;
 using CoreCheat_Reborn.Classes;
+using CoreCheat_Reborn.Features;
 using CoreCheat_Reborn.SDK.Parsers;
 using CoreCheat_Reborn.SDK.Entities;
 using CoreCheat_Reborn.SDK.Managers;
@@ -11,28 +11,29 @@ using CoreCheat_Reborn.CheatClasses;
 using CoreCheat_Reborn.SDK.Controllers;
 using static CoreCheat_Reborn.CheatClasses.Enums;
 using static CoreCheat_Reborn.Versions.Panorama.Settings;
-using static CoreCheat_Reborn.CheatClasses.Offsets.others;
-using static CoreCheat_Reborn.CheatClasses.Offsets.netvars;
-using static CoreCheat_Reborn.CheatClasses.Offsets.signatures;
 
 namespace CoreCheat_Reborn.Versions.Panorama
 {
     public partial class Main : MetroFramework.Forms.MetroForm
     {
+        Dev devFrm = new Dev();
         private static string infoStr;
         public void Inject_FormClosing(object sender, FormClosingEventArgs e)
         {
-            glowButton.Checked = false;
-            flashButton.Checked = false;
-            radarButton.Checked = false;
-            bunnyButton.Checked = false;
-            triggerButton.Checked = false;
-            chamsButton.Checked = false;
-            autoPistolButton.Checked = false;
-            viewType.SelectedIndex = 0;
-            noHandsButton.Checked = false;
-            removeScopeButton.Checked = false;
-            bombTrajectButton.Checked = false;
+            aimbotButton.Enabled = false;
+            autoPistolButton.Enabled = false;
+            bombTrajectButton.Enabled = false;
+            bunnyButton.Enabled = false;
+            chamsButton.Enabled = false;
+            dIndicatorButton.Enabled = false;
+            flashButton.Enabled = false;
+            glowButton.Enabled = false;
+            noHandsButton.Enabled = false;
+            NoSmokeButton.Enabled = false;
+            radarButton.Enabled = false;
+            rcsButton.Enabled = false;
+            removeScopeButton.Enabled = false;
+            triggerButton.Enabled = false;
             MiscConfig.ViewModelFOVValue = 90;
             Methods.Wait(1500);
             CLocalPlayer.SetClantag(string.Empty, string.Empty);
@@ -48,6 +49,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
             InitializeCheat();
 #if DEBUG
             AttachDevEssentials();
+
 #endif
             Refresh();
         }
@@ -75,12 +77,13 @@ namespace CoreCheat_Reborn.Versions.Panorama
             CylMem.OpenProcess(p[0].Id);
             Modules.ClientDLLAdress = Modules.GetModule("csgo", Modules.ClientDLLName);
             Modules.EngineDLLAdress = Modules.GetModule("csgo", Modules.EngineDLLName);
+            Modules.ShaderAPIAdress = Modules.GetModule("csgo", Modules.ShaderAPIName);
+            Modules.VSTDLibDLLAdress = Modules.GetModule("csgo", Modules.VSTDLibDLLName);
+            OffsetUpdater.Updater.GetNetvars();
+            OffsetUpdater.Updater.ScanAllPatterns();
 #if DEBUG
-            //var a = SigScan.ScanPattern(Modules.EngineDLLName, "53 56 57 8B DA 8B F9 FF 15", 0,0,false);
-            //    MessageBox.Show(a.ToString() + "  " + dwSetClanTag.ToString());
-            //dwClientCmd = SigScan.ScanPattern(Modules.EngineDLLName, "55 8B EC 8B 0D ? ? ? ? 81 F9 ? ? ? ? 75 0C A1 ? ? ? ? 35 ? ? ? ? EB 0B") - Modules.EngineDLLAdress;
+
 #endif
-            CLocalPlayer.SetClantag("Core-Project", "Core-Project");
             Thread Cheats = new Thread(new ThreadStart(MainThread));
             Cheats.Start();
         }
@@ -94,6 +97,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
             CheatSettings.GlowSettings.glowColorIndex = (int)VisualConfig.selectedGlowColor;
             bhopType.SelectedIndex = (int)MiscConfig.SelectedBhopType;
             viewType.SelectedIndex = (int)MiscConfig.SelectedViewType;
+            aimKeyCombo.SelectedIndex = (int)AimBotConfig.LockKey;
             realDotHider.Visible = true;
             mainTab.SelectedIndex = 0;
         }
@@ -101,16 +105,17 @@ namespace CoreCheat_Reborn.Versions.Panorama
         {
             CheatInfo();
             adminModeAlert.Visible = true;
-            Dev devFrm = new Dev();
             devFrm.Show();
             Width = 770;
             realDotHider.Visible = false;
             dotHider.Visible = true;
+            devMenuButton.Visible = true;
         }
         private static void MainThread()
         {
             if (Modules.IsModuleRunning(Modules.ClientDLLName))
             {
+                AimBotController Aim = new AimBotController();
                 while (true)
                 {
                     if (CLocalPlayer.IsPlaying)
@@ -120,277 +125,78 @@ namespace CoreCheat_Reborn.Versions.Panorama
                         #region PlayerLoop
                         for (int i = 0; i <= EngineClient.MaxPlayer; i++)
                         {
-                            int EntBase = CylMem.ReadInt(Modules.ClientDLLAdress + dwEntityList + i * 0x10);
+                            int EntBase = CylMem.ReadInt(Modules.ClientDLLAdress + Offsets.signatures.dwEntityList + i * 0x10);
                             if (EntBase == 0) continue;
                             if (CEntityPlayer.isDormant(EntBase)) continue;
                             if (CEntityPlayer.isDead(EntBase)) continue;
                             if (CEntityPlayer.Team(EntBase) == Teams.NONE || CEntityPlayer.Team(EntBase) == Teams.SPECTATOR) continue;
                             if (CEntityPlayer.WeaponName(EntBase) == "NONE") continue;
+                            Aimbot.ConfigureAimbot(EntBase, Aim);
+
                             #region Entity Cheats
 
                             #region Glow ESP (WallHack)
-                            int GlowIndex = CylMem.ReadInt(EntBase + m_iGlowIndex);
-                            if (CEntityPlayer.Team(EntBase) == Teams.TERRORIST && CheatStatus.WallActive && CEntityPlayer.isAlive(EntBase) && ((CLocalPlayer.Team != CEntityPlayer.Team(EntBase) && VisualConfig.glowEnemyTeam) || (CLocalPlayer.Team == CEntityPlayer.Team(EntBase) && VisualConfig.glowLocalTeam))) //T
-                            {
-                                if (VisualConfig.selectedGlowColor == VisualColor.ENGINE)
-                                    CEntityPlayer.Glow(GlowIndex, VisualConfig.GlowEngineTerrorist, VisualConfig.selectedGlowStyle, VisualConfig.selectedGlowType);
-                                else if (VisualConfig.selectedGlowColor == VisualColor.REDBLUE)
-                                    CEntityPlayer.Glow(GlowIndex, VisualConfig.GlowRed, VisualConfig.selectedGlowStyle, VisualConfig.selectedGlowType);
-                                else if (VisualConfig.selectedGlowColor == VisualColor.HEALTH)
-                                    CEntityPlayer.Glow(GlowIndex, Parsers.ParseEnemyGlowHealth(CEntityPlayer.Health(EntBase)), VisualConfig.selectedGlowStyle, VisualConfig.selectedGlowType);
-                            }
-                            if (CEntityPlayer.Team(EntBase) == Teams.ANTI_TERRORIST && CheatStatus.WallActive && CEntityPlayer.isAlive(EntBase) && ((CLocalPlayer.Team != CEntityPlayer.Team(EntBase) && VisualConfig.glowEnemyTeam) || (CLocalPlayer.Team == CEntityPlayer.Team(EntBase) && VisualConfig.glowLocalTeam))) //AT
-                            {
-                                if (VisualConfig.selectedGlowColor == VisualColor.ENGINE)
-                                    CEntityPlayer.Glow(GlowIndex, VisualConfig.GlowEngineATerrorist, VisualConfig.selectedGlowStyle, VisualConfig.selectedGlowType);
-                                else if (VisualConfig.selectedGlowColor == VisualColor.REDBLUE)
-                                    CEntityPlayer.Glow(GlowIndex, VisualConfig.GlowBlue, VisualConfig.selectedGlowStyle, VisualConfig.selectedGlowType);
-                                else if (VisualConfig.selectedGlowColor == VisualColor.HEALTH)
-                                    CEntityPlayer.Glow(GlowIndex, Parsers.ParseEnemyGlowHealth(CEntityPlayer.Health(EntBase)), VisualConfig.selectedGlowStyle, VisualConfig.selectedGlowType);
-                            }
+                            GlowESP.RunGlowESPPanorama(EntBase);
                             #endregion
 
                             #region Chams
-                            if (CheatStatus.ChamsActive)
-                            {
-                                if (CEntityPlayer.Team(EntBase) == Teams.TERRORIST && CEntityPlayer.isAlive(EntBase)) //T
-                                {
-                                    if (VisualConfig.selectedChamsColor == VisualColor.ENGINE)
-                                        CEntityPlayer.ApplyChams(VisualConfig.EngineTerroristColor, VisualConfig.ChamsBrightness ,EntBase);
-                                    else if (VisualConfig.selectedChamsColor == VisualColor.REDBLUE)
-                                        CEntityPlayer.ApplyChams(VisualConfig.Red, VisualConfig.ChamsBrightness, EntBase);
-                                    else if (VisualConfig.selectedChamsColor == VisualColor.HEALTH)
-                                        CEntityPlayer.ApplyChams(Parsers.ParseEnemyChamsHealth(CEntityPlayer.Health(EntBase)), VisualConfig.ChamsBrightness, EntBase);
-                                }
-                                if (CEntityPlayer.Team(EntBase) == Teams.ANTI_TERRORIST && CEntityPlayer.isAlive(EntBase)) //AT
-                                {
-                                    if (VisualConfig.selectedChamsColor == VisualColor.ENGINE)
-                                        CEntityPlayer.ApplyChams(VisualConfig.EngineATerroristColor, VisualConfig.ChamsBrightness, EntBase);
-                                    else if (VisualConfig.selectedChamsColor == VisualColor.REDBLUE)
-                                        CEntityPlayer.ApplyChams(VisualConfig.Blue, VisualConfig.ChamsBrightness, EntBase);
-                                    else if (VisualConfig.selectedChamsColor == VisualColor.HEALTH)
-                                        CEntityPlayer.ApplyChams(Parsers.ParseEnemyChamsHealth(CEntityPlayer.Health(EntBase)), VisualConfig.ChamsBrightness, EntBase);
-                                }
-                            }
-                            else
-                                CEntityPlayer.ClearChams(EntBase);
+                            Chams.RunChamsPanorama(EntBase);
                             #endregion
 
                             #region Engine Radar Hack
-                            if (CheatStatus.RadarActive && !CEntityPlayer.isDead(EntBase))
-                                CEntityPlayer.SpotPlayer(EntBase);
+                            EngineRadar.RunRadarPanorama(EntBase);
                             #endregion
 
                             #endregion
-
                         }
                         #endregion
 
                         #region BunnyHop
-                        if (CheatStatus.BunnyActive)
-                        {
-                            if (Methods.HoldingKey(Keys.Space))
-                            {
-                                if (MiscConfig.SelectedBhopType == BunnyType.STRAFE)
-                                {
-                                    Vector3 PrevAngles = new Vector3();
-                                    if (CLocalPlayer.Flag != FlagState.ONGROUND)
-                                    {
-                                        if (CLocalPlayer.ViewAngles.Y > PrevAngles.Y)
-                                            CLocalPlayer.GoLeft();
-                                        else if (CLocalPlayer.ViewAngles.Y < PrevAngles.Y)
-                                            CLocalPlayer.GoRight();
-                                        PrevAngles = CLocalPlayer.ViewAngles;
-                                    }
-                                }
-                                if ((CLocalPlayer.Flag == FlagState.ONGROUND || CLocalPlayer.Flag == FlagState.CROUCHING))
-                                    CLocalPlayer.Jump();
-                            }
-                        }
+                        BunnyHop.RunBunnyHopPanorama();
                         #endregion
 
                         #region AutoPistol
-                        if (CheatStatus.AutoPistolActive)
-                            if (Methods.HoldingKey(Keys.LButton))
-                                if (CLocalPlayer.IsPistolWeapon)
-                                    CLocalPlayer.ShootWithPointer(15);
+                        AutoPistol.RunAutoPistolPanorama();
                         #endregion
 
                         #region Trigger Bot
-                        if (CheatStatus.TriggerActive)
-                        {
-                            if (AssistsConfig.TriggerKey == KeysList.NOKEYS || (AssistsConfig.TriggerKey != KeysList.NOKEYS && Methods.HoldingKey(Parsers.KeyListToRealKey(AssistsConfig.TriggerKey))))
-                            {
-                                if (CLocalPlayer.IsCloseRangeWeapon) continue;
-                                if (CLocalPlayer.IsThrowableWeapon) continue;
-                                else
-                                {
-                                    int CrossEntity;
-                                    if (CylMem.ReadInt(Modules.ClientDLLAdress + dwEntityList + (CLocalPlayer.CrossID - 1) * 0x10) == -1)
-                                        CrossEntity = 0;
-                                    else
-                                        CrossEntity = CylMem.ReadInt(Modules.ClientDLLAdress + dwEntityList + (CLocalPlayer.CrossID - 1) * 0x10);
-                                    if (CrossEntity == 0) continue;
-                                    if (CEntityPlayer.isDormant(CrossEntity)) continue;
-                                    if (CEntityPlayer.isDead(CrossEntity)) continue;
-                                    if (CEntityPlayer.Team(CrossEntity) == Teams.NONE || CEntityPlayer.Team(CrossEntity) == Teams.SPECTATOR) continue;
-                                    if (CEntityPlayer.WeaponName(CrossEntity) == "NONE") continue;
-                                    if (AssistsConfig.isNoScope)
-                                    {
-                                        if (CLocalPlayer.CrossID > 0 && CLocalPlayer.CrossID <= EngineClient.MaxPlayer && ((CEntityPlayer.Team(CrossEntity) == CLocalPlayer.Team && AssistsConfig.isFriendlyFire) || (CEntityPlayer.Team(CrossEntity) != CLocalPlayer.Team)))
-                                        {
-                                            if (CEntityPlayer.isAlive(CrossEntity) && CLocalPlayer.CrossID >= 0)
-                                            {
-                                                for (int i = 0; i < 2; i++)
-                                                {
-                                                    if (CLocalPlayer.IsPistolWeapon)
-                                                    {
-                                                        CLocalPlayer.ShootWithPointer(new Random().Next(7, 20));
-                                                        continue;
-                                                    }
-                                                    else if (AssistsConfig.isSprayRandom)
-                                                        CLocalPlayer.ShootWithPointer(new Random().Next(7, 20));
-                                                    else
-                                                        CLocalPlayer.ShootWithPointer(WeaponSettings.TriggerSprayTime);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else if (!CLocalPlayer.Scoped)
-                                    {
-                                        if (CLocalPlayer.IsScopedWeapon)
-                                            continue;
-                                        else
-                                        {
-                                            if (CLocalPlayer.CrossID > 0 && CLocalPlayer.CrossID <= EngineClient.MaxPlayer && ((CEntityPlayer.Team(CrossEntity) == CLocalPlayer.Team && AssistsConfig.isFriendlyFire) || (CEntityPlayer.Team(CrossEntity) != CLocalPlayer.Team)))
-                                            {
-                                                if ((CEntityPlayer.Team(CrossEntity) != CLocalPlayer.Team) && CEntityPlayer.isAlive(CrossEntity) && CLocalPlayer.CrossID >= 0)
-                                                {
-                                                    for (int i = 0; i < 2; i++)
-                                                    {
-                                                        if (CLocalPlayer.IsPistolWeapon)
-                                                        {
-                                                            CLocalPlayer.ShootWithPointer(new Random().Next(7, 20));
-                                                            continue;
-                                                        }
-                                                        else if (AssistsConfig.isSprayRandom)
-                                                            CLocalPlayer.ShootWithPointer(new Random().Next(7, 20));
-                                                        else
-                                                            CLocalPlayer.ShootWithPointer(WeaponSettings.TriggerSprayTime);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (CLocalPlayer.CrossID > 0 && CLocalPlayer.CrossID <= EngineClient.MaxPlayer)
-                                        {
-                                            if (CLocalPlayer.CrossID > 0 && CLocalPlayer.CrossID <= EngineClient.MaxPlayer && ((CEntityPlayer.Team(CrossEntity) == CLocalPlayer.Team && AssistsConfig.isFriendlyFire) || (CEntityPlayer.Team(CrossEntity) != CLocalPlayer.Team)))
-                                            {
-                                                for (int i = 0; i < 2; i++)
-                                                {
-                                                    if (CLocalPlayer.IsPistolWeapon)
-                                                    {
-                                                        CLocalPlayer.ShootWithPointer(new Random().Next(7, 20));
-                                                        continue;
-                                                    }
-                                                    else if (AssistsConfig.isSprayRandom)
-                                                        CLocalPlayer.ShootWithPointer(new Random().Next(7, 20));
-                                                    else
-                                                        CLocalPlayer.ShootWithPointer(WeaponSettings.TriggerSprayTime);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            
-                        }
+                        Triggerbot.RunTriggerBotPanorama();
                         #endregion
 
                         #region No Flash
-                        if (CheatStatus.FlashActive)
-                            CLocalPlayer.RemoveFlash();
-                        else if (!CheatStatus.FlashActive)
-                            CLocalPlayer.AddFlash();
+                        NoFlash.RunNoFlashPanorama();
                         #endregion
 
                         #region No Hands
-                        if (CheatStatus.NoHandsActive)
-                            CLocalPlayer.RemoveHands();
-                        if (!CheatStatus.NoHandsActive)
-                            CLocalPlayer.AddHands();
+                        NoHands.RunNoHandsPanorama();
                         #endregion
 
                         #region DamageIndicator
-                        if (CheatStatus.DamageIndicatorActive)
-                        {
-                            if (CLocalPlayer.TotalHits > VisualConfig.Hits)
-                            {
-                                VisualConfig.Hits = CLocalPlayer.TotalHits;
-                                CLocalPlayer.HealthShotBoostTime = 0.5f;
-                            }
-                            if (CLocalPlayer.isDead)
-                                VisualConfig.Hits = 0;
-                        }
-                        else
-                            VisualConfig.Hits = 0;
-                    #endregion
+                        DamageIndicator.RunDamageIndicatorPanorama();
+                        #endregion
 
-                    #region Remove Scope
-                    if (CheatStatus.RemoveScopeActive)
-                            if(CLocalPlayer.ScopeLevel != ScopeLevels.NOTSCOPED)
-                                CLocalPlayer.Scoped = false;
+                        #region Remove Scope
+                        RemoveScope.RunRemoveScopePanorama();
                         #endregion
 
                         #region ViewModel FOV
-                        if (CLocalPlayer.ScopeLevel == ScopeLevels.NOTSCOPED)
-                            CLocalPlayer.ViewModelFOV = MiscConfig.ViewModelFOVValue;
+                        ViewModelFOV.RunViewModelFOV();
                         #endregion
 
                         #region Recoil Control System
-                        if (CheatStatus.RCSActive)
-                        {
-                            if (CLocalPlayer.ShootedBullets >= WeaponSettings.RCSShootFired && !CLocalPlayer.IsPistolWeapon)
-                            {
-                                AssistsConfig.NewViewAngles.X = ((CLocalPlayer.ViewAngles.X + AssistsConfig.OldAimPunch.X) - (CLocalPlayer.AimPunchAngles.X * 2f));
-                                AssistsConfig.NewViewAngles.Y = ((CLocalPlayer.ViewAngles.Y + AssistsConfig.OldAimPunch.Y) - (CLocalPlayer.AimPunchAngles.Y * 2f));
-                                AssistsConfig.NewViewAngles.Z = 0;
-                                Parsers.ClampAngle(AssistsConfig.NewViewAngles);
-                                AssistsConfig.OldAimPunch.X = CLocalPlayer.AimPunchAngles.X * 2f;
-                                AssistsConfig.OldAimPunch.Y = CLocalPlayer.AimPunchAngles.Y * 2f;
-                                AssistsConfig.OldAimPunch.Z = 0;
-                                CLocalPlayer.ViewAngles = AssistsConfig.NewViewAngles;
-                            }
-                            else
-                                AssistsConfig.OldAimPunch.X = AssistsConfig.OldAimPunch.Y = AssistsConfig.OldAimPunch.Z = 0;
-                        }
+                        RecoilControlSystem.RunRCSPanorama();
                         #endregion
 
                         #region Bomb (Grenade) Trajectory
-                        if (CheatStatus.BombTrajectoryActive)
-                            EngineClient.ShowBombTrajectory();
-                        else if (!CheatStatus.BombTrajectoryActive)
-                            EngineClient.HideBombTrajectory();
+                        GrenadeTrajectory.RunGPRJPanorama();
                         #endregion
 
                         #region No Smoke
-                        if (CheatStatus.NoSmokeActive)
-                        {
-                            for (int i = 0; i < 512; i++)
-                            {
-                                int EntBase = CylMem.ReadInt(Modules.ClientDLLAdress + dwEntityList + i * 0x10);
-                                if (EntBase == 0) continue;
-                                if (EngineClient.GetClassId(EntBase) == ClassID.CSmokeGrenadeProjectile)
-                                    CylMem.CWrite<Vector3>(EntBase + m_vecOrigin, new Vector3(999, 999, 999));
-                            }
-                        }
+                        NoSmoke.RunNoSmokePanorama();
                         #endregion
 
                         #region Aimbot
-                        if(CheatStatus.AimbotActive)
-                            AimBotControllerNEW.DoAimbot(AimBotControllerNEW.FindPlayer());
+                        Aimbot.RunAimbotPanorama(Aim);
                         #endregion
 
                         #endregion
@@ -409,6 +215,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
 #if DEBUG
             Text = "☠️ Panorama [DEV]                                                                        " + Methods.RandomString(30);
             titleTimer.Enabled = false;
+            Refresh();
 #else
             Text = "☠️ Panorama Edition                                                                      " + Methods.RandomString(30);
             titleTimer.Enabled = false;
@@ -699,7 +506,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
         private void ApplyClantagBtn_Click(object sender, EventArgs e)
         {
             MiscConfig.SelectedClanTag = SelectedClantagText.Text;
-            CLocalPlayer.SetClantag(MiscConfig.SelectedClanTag, MiscConfig.SelectedClanTag);
+            ClanTagChanger.ChangeClanTag(MiscConfig.SelectedClanTag);
         }
         #endregion
 
@@ -738,6 +545,53 @@ namespace CoreCheat_Reborn.Versions.Panorama
         }
         #endregion
 
+        #region DEVBUTTON
+        private void DevMenuButton_Click(object sender, EventArgs e)
+        {
+            devFrm.Show();
+        }
+        #endregion
+
+        #endregion
+
+        #region Aimbot
+        private void AimbotButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (aimbotButton.Checked)
+            {
+                Console.Beep((int)BeepVoice.HIGHFREQ, (int)BeepVoice.DURATION);
+                CheatStatus.AimbotActive = true;
+            }
+            else
+            {
+                Console.Beep((int)BeepVoice.LOWFREQ, (int)BeepVoice.DURATION);
+                CheatStatus.AimbotActive = false;
+            }
+        }
+        private void BoneHEAD_CheckedChanged(object sender, EventArgs e)
+        {
+            AimBotConfig.SelectedBone = Bones.HEAD;
+        }
+        private void BoneNECK_CheckedChanged(object sender, EventArgs e)
+        {
+            AimBotConfig.SelectedBone = Bones.NECK;
+        }
+        private void BoneBODY_CheckedChanged(object sender, EventArgs e)
+        {
+            AimBotConfig.SelectedBone = Bones.BODY;
+        }
+        private void BoneLLEG_CheckedChanged(object sender, EventArgs e)
+        {
+            AimBotConfig.SelectedBone = Bones.LEFT_LEG;
+        }
+        private void BoneRLEG_CheckedChanged(object sender, EventArgs e)
+        {
+            AimBotConfig.SelectedBone = Bones.RIGHT_LEG;
+        }
+        private void AimKeyCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AimBotConfig.LockKey = (KeysList)aimKeyCombo.SelectedIndex;
+        }
         #endregion
 
         #endregion

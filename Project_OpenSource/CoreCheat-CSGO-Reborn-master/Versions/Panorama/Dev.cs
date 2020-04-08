@@ -17,6 +17,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
         {
             Modules.ClientDLLAdress = Modules.GetModule("csgo", Modules.ClientDLLName);
             Modules.EngineDLLAdress = Modules.GetModule("csgo", Modules.EngineDLLName);
+            Modules.ShaderAPIAdress = Modules.GetModule("csgo", Modules.ShaderAPIName);
         }
         private void Infogetter_Tick(object sender, EventArgs e)
         {
@@ -24,10 +25,12 @@ namespace CoreCheat_Reborn.Versions.Panorama
             AddSeperator(status);
             AddInfo("Client.DLL", Modules.ClientDLLAdress);
             AddInfo("Engine.DLL", Modules.EngineDLLAdress);
+            AddInfo("Shader API", Modules.ShaderAPIAdress);
             AddSeperator(status);
             AddInfo("LPBase", CLocalPlayer.LocalPlayerBase);
             if (CLocalPlayer.IsPlaying)
             {
+                AddInfo("Name", CLocalPlayer.Name);
                 AddInfo("Health", CLocalPlayer.Health);
                 AddInfo("Flag", CLocalPlayer.Flag);
                 AddInfo("Team", CLocalPlayer.Team);
@@ -36,6 +39,9 @@ namespace CoreCheat_Reborn.Versions.Panorama
                 AddInfo("Weapon", CLocalPlayer.WeaponName);
                 AddInfo("IsAlive", CLocalPlayer.isAlive);
                 AddInfo("Armor", CLocalPlayer.ArmorValue);
+                AddInfo("Location", CLocalPlayer.LastPlace);
+                AddInfo("ShootedBullets", CLocalPlayer.ShootedBullets);
+                AddInfo("VAng", CLocalPlayer.ViewAngles);
             }
             else
                 AddInfo("NOT PLAYING", "");
@@ -69,6 +75,11 @@ namespace CoreCheat_Reborn.Versions.Panorama
         private void TestBtn_Click(object sender, EventArgs e)
         {
             SDK.Overlay.CoreOverlay.Load("csgo", "Counter-Strike: Global Offensive");
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

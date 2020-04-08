@@ -111,10 +111,27 @@
     <Compile Include="Expire.Designer.cs">
       <DependentUpon>Expire.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\Aimbot.cs" />
+    <Compile Include="Features\AutoPistol.cs" />
+    <Compile Include="Features\BunnyHop.cs" />
+    <Compile Include="Features\Chams.cs" />
+    <Compile Include="Features\ClanTagChanger.cs" />
+    <Compile Include="Features\DamageIndicator.cs" />
+    <Compile Include="Features\EngineRadar.cs" />
+    <Compile Include="Features\GlowESP.cs" />
+    <Compile Include="Features\GrenadeTrajectory.cs" />
+    <Compile Include="Features\NoFlash.cs" />
+    <Compile Include="Features\NoHands.cs" />
+    <Compile Include="Features\NoSmoke.cs" />
+    <Compile Include="Features\RecoilControlSystem.cs" />
+    <Compile Include="Features\RemoveScope.cs" />
+    <Compile Include="Features\Triggerbot.cs" />
+    <Compile Include="Features\ViewModelFOV.cs" />
     <Compile Include="SDK\Controllers\AimBotController.cs" />
-    <Compile Include="SDK\Controllers\AimBotControllerNEW.cs" />
     <Compile Include="SDK\Controllers\Allocator.cs" />
     <Compile Include="SDK\Controllers\ClientCMD.cs" />
+    <Compile Include="SDK\Controllers\ConvarManager.cs" />
+    <Compile Include="SDK\Controllers\NetvarManager.cs" />
     <Compile Include="SDK\Engine\EngineClient.cs" />
     <Compile Include="SDK\Entities\CEntityPlayer.cs" />
     <Compile Include="CheatClasses\Enums.cs" />

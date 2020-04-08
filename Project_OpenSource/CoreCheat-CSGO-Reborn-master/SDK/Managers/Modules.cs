@@ -7,8 +7,12 @@ namespace CoreCheat_Reborn.SDK.Managers
     {
         public static string ClientDLLName = "client_panorama.dll";
         public static string EngineDLLName = "engine.dll";
+        public static string ShaderAPIName = "shaderapidx9.dll";
+        public static string VSTDLibDLLName = "vstdlib.dll";
         public static int ClientDLLAdress;
         public static int EngineDLLAdress;
+        public static int ShaderAPIAdress;
+        public static int VSTDLibDLLAdress;
         public static int GetModule(string procName, string mModuleName)
         {
             Process[] p = Process.GetProcessesByName(procName);
