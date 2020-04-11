@@ -12,7 +12,7 @@ All good things have to end. So from now, im throwing the project to the communi
 Features
 -------------
 - Fully external SDK by me.
-- Automatic offset updater(Sig Scanning & AOB system) (I don t use btw) .
+- Automatic offset updater (Sig Scanning & AOB system) (Now i use it lmao).
 - Website controlling system (I removed panel & sql but php is still there.).
 - Updater sistem which grabbing last release from GitHub with [Lufzys/Github.NET](https://github.com/Lufzys/Github.NET "Lufzys/Github.NET")
 - Program can be only opened from "Updater".
@@ -22,7 +22,9 @@ Features
 - Play music class by [github/Septillioner](https://github.com/septillioner "github/Septillioner"). You can play all musics with their note.
 - Shitty Auth system (Removed all security sh.ts im sorry abut that they are personal lmao. You can directly bypass that with compiling this in DEBUG mode.)
 - A debugger system by me.
-- ClientCMD is implemented by never used.
+- ClientCMD is implemented.
+- ConVar manager is implemented.
+- NetVar manager is implemented ( by [github/Lufzys](https://github.com/lufzys "github/Lufzys") )
 - Overlay managers is written and implemented by [github/Lufzys](https://github.com/lufzys "github/Lufzys") but they are never used and not finished.
 - Math & Parser classes is implemented.
 - Mutliversion support is included. Versions can be obtained from server but you should add them manually to program (yet).
@@ -33,7 +35,7 @@ Features
 
 
 
-###I need to explain some things...
+##I need to explain some things...
 ----
 I removed my private Memory Class because im using that class in multipile games for my private cheats. You can easly implement your memory class just changeing R/W functions name with Visual Studio s "Find and Change" feature.
 
