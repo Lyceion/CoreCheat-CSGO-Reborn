@@ -12,7 +12,8 @@ Ok, time to talk some serious sh_t. We are here. Features bellow. This external 
 
 ## Features
 - Fully built SDK.
-- Everything is connected to functions so this cheat is ready to update offset and go.
+~~- Everything is connected to functions so this cheat is ready to update offset and go.~~
+- This cheat has Signature Scanner & NetVar Manager & ConVar manager. COMPILE & GO!
 - Release & DEBUG version settings.
 - Special Devolper panel for seeing things.
 
@@ -28,15 +29,16 @@ Ok, time to talk some serious sh_t. We are here. Features bellow. This external 
     - NoHands (Removes hand model from screen.)
     - BunnyHop (Jump like a bunny.)
     - BunnyHop settings.
-    - View FOV (Incrases your view angle.) [Disabled for security reasons]
+    - View FOV (Incrases your view angle.)
     - Recoil Control System (RCS: No weapon recoil.)
-    - Grenade Trajectory (Shows bombs throwing ways.) [Disabled for security reasons]
+    - Grenade Trajectory (Shows bombs throwing ways.)
     - Engine Radar (You can see player s location on csgo map.)
     - AutoPistol (Spray like machine guns in pistol.)
     - Triggerbot (Shoots peaple when he is on your crosshair.)
     - Triggerbot settings
     - Visible Chams (People are painted. So It s easy to see now...)
     - Chams Settings
+    - Aimbot (FINALLY!)
     
     Fully Legit Features:
     - DeadESP (Shows enemy positions when u are dead. (This is for giving infos.))
@@ -63,6 +65,7 @@ Ok, time to talk some serious sh_t. We are here. Features bellow. This external 
     - Trigerbot ayarları
     - Visible Chams (Oyuncular parlak şekilde boyanır. Daha kolay görürsünüz...)
     - Chams ayarları.
+    - AimBot (SONUNDA!)
     
     Fully Legit Özellikleri:
     - DeadESP (Öldüğünüzde info verme amaçlı rakibin yerleri gözükmeye başlar.)
