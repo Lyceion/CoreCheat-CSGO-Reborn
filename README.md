@@ -35,7 +35,7 @@ Features
 
 
 
-##I need to explain some things...
+## I need to explain some things...
 ----
 I removed my private Memory Class because im using that class in multipile games for my private cheats. You can easly implement your memory class just changeing R/W functions name with Visual Studio s "Find and Change" feature.
 
