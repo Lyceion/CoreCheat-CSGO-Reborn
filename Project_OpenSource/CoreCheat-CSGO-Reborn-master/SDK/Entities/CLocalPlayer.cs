@@ -207,15 +207,18 @@ namespace CoreCheat_Reborn.SDK.Entities
                 //sexyInfo = CylMem.ReadInt(sexyInfo + 0xC);
                 //sexyInfo = CylMem.ReadInt(sexyInfo + 0x28 + ((1 - 1) * 0x34));
                 //return CylMem.ReadString(sexyInfo);
-                int radarBasePtr = 0x78;
-                int radarStructSize = 0x174;
-                int radarStructPos = 0x18;
-                int radarBase = CylMem.ReadInt(Modules.ClientDLLAdress + dwRadarBase);
-                int radarPtr = CylMem.ReadInt(radarBase + radarBasePtr);
-                int a = CylMem.ReadInt(Modules.ClientDLLAdress + dwClientState);
-                int ind = CylMem.ReadInt(a + dwClientState_GetLocalPlayer) + 1;
-                var nameAddr = radarPtr + ind * radarStructSize + radarStructPos;
-                return CylMem.ReadString(nameAddr);
+                //int radarBasePtr = 0x78;
+                //int radarStructSize = 0x174;
+                //int radarStructPos = 0x18;
+                //int radarBase = CylMem.ReadInt(Modules.ClientDLLAdress + dwRadarBase);
+                //int radarPtr = CylMem.ReadInt(radarBase + radarBasePtr);
+                //int a = CylMem.ReadInt(Modules.ClientDLLAdress + dwClientState);
+                //int ind = CylMem.ReadInt(a + dwClientState_GetLocalPlayer) + 1;
+                //var nameAddr = radarPtr + ind * radarStructSize + radarStructPos;
+                //return CylMem.ReadString(nameAddr);
+                ConvarManager NameCvar = new ConvarManager("name");
+                return CylMem.ReadString(NameCvar.pThis);
+
             }
         }
         public static bool Scoped

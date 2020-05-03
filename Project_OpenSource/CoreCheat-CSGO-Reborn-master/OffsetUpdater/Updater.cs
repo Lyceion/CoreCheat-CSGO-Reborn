@@ -18,6 +18,7 @@ namespace CoreCheat_Reborn.OffsetUpdater
         }
         public static void ScanAllPatterns()
         {
+            dwClientCmd = SigScan.ScanPatterna(Modules.EngineDLLName, "55 8B EC 8B 0D ? ? ? ? 81 F9 ? ? ? ? 75 0C A1 ? ? ? ? 35 ? ? ? ? EB 05 8B 01 FF 50 34 50 A1").ToInt32() - Modules.EngineDLLAdress;
             dwClientState = SigScan.ScanPattern(Modules.EngineDLLName, "A1 ? ? ? ? 33 D2 6A 00 6A 00 33 C9 89 B0", 1, 0, true);
             dwClientState_GetLocalPlayer = SigScan.ScanPattern(Modules.EngineDLLName, "8B 80 ? ? ? ? 40 C3", 2, 0, false);
             dwClientState_IsHLTV = SigScan.ScanPattern(Modules.EngineDLLName, "80 BF ? ? ? ? ? 0F 84 ? ? ? ? 32 DB", 2, 0, false);
@@ -64,9 +65,9 @@ namespace CoreCheat_Reborn.OffsetUpdater
             m_pStudioHdr = SigScan.ScanPattern(Modules.ClientDLLName, "8B B6 ? ? ? ? 85 F6 74 05 83 3E 00 75 02 33 F6 F3 0F 10 44 24", 2, 0, true);
             m_yawClassPtr = SigScan.ScanPattern(Modules.ClientDLLName, "81 F9 ? ? ? ? 75 16 F3 0F 10 05 ? ? ? ? F3 0F 11 45 ? 81 75 ? ? ? ? ? EB 0A 8B 01 8B 40 30 FF D0 D9 5D 0C 8B 55 08", 2, 0, true);
             m_pitchClassPtr = SigScan.ScanPattern(Modules.ClientDLLName, "A1 ? ? ? ? 89 74 24 28", 1, 0, true);
-            interface_engine_cvar = SigScan.ScanPattern("vstdlib.dll", "8B 0D ? ? ? ? C7 05", 2, 0, true);
-            convar_name_hash_table = SigScan.ScanPattern("vstdlib.dll", "8B 3C 85", 3, 0, true);
-            m_bDormant = SigScan.ScanPattern(Modules.ClientDLLName, "8A 81 ? ? ? ? C3 32 C0", 2, 8, true);
+            interface_engine_cvar = SigScan.ScanPattern(Modules.VSTDLibDLLName, "8B 0D ? ? ? ? C7 05", 2, 0, true);
+            convar_name_hash_table = SigScan.ScanPattern(Modules.VSTDLibDLLName, "8B 3C 85", 3, 0, true);
+            m_bDormant = SigScan.ScanPattern(Modules.ClientDLLName, "8A 81 ? ? ? ? C3 32 C0", 2, 8, false);
             model_ambient_min = SigScan.ScanPattern(Modules.EngineDLLName, "F3 0F 10 0D ? ? ? ? F3 0F 11 4C 24 ? 8B 44 24 20 35 ? ? ? ? 89 44 24 0C", 4, 0, true);
             set_abs_angles = SigScan.ScanPatterna(Modules.ClientDLLName, "55 8B EC 83 E4 F8 83 EC 64 53 56 57 8B F1 E8").ToInt32() - Modules.EngineDLLAdress;
             set_abs_origin = SigScan.ScanPatterna(Modules.ClientDLLName, "55 8B EC 83 E4 F8 51 53 56 57 8B F1 E8").ToInt32() - Modules.EngineDLLAdress;

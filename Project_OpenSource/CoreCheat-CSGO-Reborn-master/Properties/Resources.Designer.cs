@@ -73,6 +73,16 @@ namespace CoreCheat_Reborn.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap CoreCheat {
+            get {
+                object obj = ResourceManager.GetObject("CoreCheat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap CoreCheatLogo {
             get {
                 object obj = ResourceManager.GetObject("CoreCheatLogo", resourceCulture);
@@ -107,15 +117,6 @@ namespace CoreCheat_Reborn.Properties {
             get {
                 object obj = ResourceManager.GetObject("diskette_save_saveas_1514", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.IO.MemoryStream öğesine benzeyen System.IO.UnmanagedMemoryStream türünde yerelleştirilmiş bir kaynak arar.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream imperialmarch {
-            get {
-                return ResourceManager.GetStream("imperialmarch", resourceCulture);
             }
         }
         

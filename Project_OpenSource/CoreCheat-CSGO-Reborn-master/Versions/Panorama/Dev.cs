@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using CoreCheat_Reborn.CheatClasses;
+using CoreCheat_Reborn.SDK.Controllers;
 using CoreCheat_Reborn.SDK.Entities;
 using CoreCheat_Reborn.SDK.Managers;
 
@@ -74,7 +75,11 @@ namespace CoreCheat_Reborn.Versions.Panorama
         }
         private void TestBtn_Click(object sender, EventArgs e)
         {
-            SDK.Overlay.CoreOverlay.Load("csgo", "Counter-Strike: Global Offensive");
+            //SDK.Overlay.CoreOverlay.Load("csgo", "Counter-Strike: Global Offensive");
+            //SDK.Controllers.ClientCMD.Exec("say \"Full ClientCMD Achived!\"");
+            ConvarManager NameCvar = new ConvarManager("name");
+            MessageBox.Show("0x" + NameCvar.pThis.ToString("X"));
+            Clipboard.SetText("0x" + NameCvar.pThis.ToString("X"));
         }
 
         private void Button1_Click(object sender, EventArgs e)

@@ -98,6 +98,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Debugger\LSDebugger.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\FlatCheckBox.cs" />
+    <Compile Include="Features\SlientAim.cs" />
+    <Compile Include="ProgramSettings.cs" />
     <Compile Include="Classes\Functions.cs" />
     <Compile Include="Design\TransparentLabel.cs">
       <SubType>Component</SubType>
@@ -105,10 +111,10 @@
     <Compile Include="Design\TransparentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Expire.cs">
+    <Compile Include="ExpireForm\Expire.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Expire.Designer.cs">
+    <Compile Include="ExpireForm\Expire.Designer.cs">
       <DependentUpon>Expire.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\Aimbot.cs" />
@@ -127,6 +133,9 @@
     <Compile Include="Features\RemoveScope.cs" />
     <Compile Include="Features\Triggerbot.cs" />
     <Compile Include="Features\ViewModelFOV.cs" />
+    <Compile Include="SDK\Classes\CInput.cs" />
+    <Compile Include="SDK\Classes\CUserCmd.cs" />
+    <Compile Include="SDK\Classes\CVerifiedUserCmd.cs" />
     <Compile Include="SDK\Controllers\AimBotController.cs" />
     <Compile Include="SDK\Controllers\Allocator.cs" />
     <Compile Include="SDK\Controllers\ClientCMD.cs" />
@@ -149,9 +158,7 @@
     <Compile Include="Classes\MusicLib.cs" />
     <Compile Include="Classes\Processes.cs" />
     <Compile Include="SDK\Controllers\CylMem.cs" />
-    <Compile Include="Classes\Global.cs" />
     <Compile Include="Classes\Structs.cs" />
-    <Compile Include="Debugger\Datas.cs" />
     <Compile Include="OffsetUpdater\Updater.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,14 +168,32 @@
     <Compile Include="SDK\Managers\Parsers.cs" />
     <Compile Include="SDK\Overlay\CoreOverlay.cs" />
     <Compile Include="SDK\Parsers\INIParser.cs" />
-    <Compile Include="Version Selector.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Version Selector.Designer.cs">
-      <DependentUpon>Version Selector.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Version Selector\Pages\About.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Version Selector\Pages\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Version Selector\Pages\Home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Version Selector\Pages\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Version Selector\Pages\Versions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Version Selector\Pages\Versions.Designer.cs">
+      <DependentUpon>Versions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Version Selector\VersionSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Version Selector\VersionSelector.Designer.cs">
+      <DependentUpon>VersionSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Versions\FullLegit\Launcher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,12 +243,6 @@
     <Compile Include="Versions\Panorama\Dev.Designer.cs">
       <DependentUpon>Dev.cs</DependentUpon>
     </Compile>
-    <Compile Include="Debugger\Debugger.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Debugger\Debugger.Designer.cs">
-      <DependentUpon>Debugger.cs</DependentUpon>
-    </Compile>
     <Compile Include="Versions\Panorama\Launcher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,14 +263,11 @@
     <Compile Include="Versions\ZDEV\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Expire.resx">
+    <EmbeddedResource Include="ExpireForm\Expire.resx">
       <DependentUpon>Expire.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OffsetUpdater\Updater.resx">
       <DependentUpon>Updater.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Version Selector.resx">
-      <DependentUpon>Version Selector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -263,6 +279,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Version Selector\Pages\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Version Selector\Pages\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Version Selector\Pages\Versions.resx">
+      <DependentUpon>Versions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Version Selector\VersionSelector.resx">
+      <DependentUpon>VersionSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Versions\FullLegit\Launcher.resx">
       <DependentUpon>Launcher.cs</DependentUpon>
     </EmbeddedResource>
@@ -286,9 +314,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Versions\Panorama\Dev.resx">
       <DependentUpon>Dev.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Debugger\Debugger.resx">
-      <DependentUpon>Debugger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Versions\Panorama\Launcher.resx">
       <DependentUpon>Launcher.cs</DependentUpon>
@@ -321,14 +346,12 @@
     <None Include="Resources\Profile.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CoreCheatLogoICON.ico" />
+    <None Include="Resources\CoreCheat.png" />
     <None Include="Resources\bg_new.jpg" />
     <None Include="Resources\CoreCheatModified.png" />
     <None Include="Resources\CoreCheatTransparent.png" />
     <Content Include="CoreCheatModified.ico" />
-    <Content Include="yapilacaklar.txt" />
     <None Include="Resources\settings.png" />
-    <None Include="Resources\imperialmarch.wav" />
     <None Include="Resources\lspp.png" />
     <None Include="Resources\CoreCheatLogo.png" />
     <None Include="Resources\MODEL_T.png" />

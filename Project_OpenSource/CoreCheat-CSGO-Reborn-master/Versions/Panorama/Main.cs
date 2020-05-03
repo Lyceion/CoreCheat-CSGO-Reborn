@@ -49,27 +49,21 @@ namespace CoreCheat_Reborn.Versions.Panorama
             InitializeCheat();
 #if DEBUG
             AttachDevEssentials();
-
 #endif
             Refresh();
         }
         public void CheatInfo()
         {
             infoStr = "Cheat Info:" + Environment.NewLine;
-            AddInfo("Name", Global.ProgramName);
-            AddInfo("Cheat Version", Global.ProgramVersion);
-            AddInfo("Build Date", Global.CompileDate);
+            AddInfo("Name", ProgramSettings.Globals.ProgramName);
+            AddInfo("Cheat Version", ProgramSettings.Globals.ProgramVersion);
+            AddInfo("Build Date", ProgramSettings.Globals.CompileDate);
             AddInfo("Owner", "Cylops");
             infoTXT.Text = infoStr;
         }
         public static void AddInfo(string name, object data)
         {
             infoStr += "[" + name + "] => " + data.ToString() + Environment.NewLine;
-        }
-        public static void LoadConfig(string ConfigName, string key)
-        {
-            INIParser.Load(ConfigName);
-            INIParser.Read(INIParser.Categorys.MISCS, "ClanTagName");
         }
         public void InitializeCheat()
         {
@@ -81,9 +75,8 @@ namespace CoreCheat_Reborn.Versions.Panorama
             Modules.VSTDLibDLLAdress = Modules.GetModule("csgo", Modules.VSTDLibDLLName);
             OffsetUpdater.Updater.GetNetvars();
             OffsetUpdater.Updater.ScanAllPatterns();
-#if DEBUG
-
-#endif
+//#if DEBUG
+//#endif
             Thread Cheats = new Thread(new ThreadStart(MainThread));
             Cheats.Start();
         }
@@ -120,9 +113,6 @@ namespace CoreCheat_Reborn.Versions.Panorama
                 {
                     if (CLocalPlayer.IsPlaying)
                     {
-                        #region Cheats
-
-                        #region PlayerLoop
                         for (int i = 0; i <= EngineClient.MaxPlayer; i++)
                         {
                             int EntBase = CylMem.ReadInt(Modules.ClientDLLAdress + Offsets.signatures.dwEntityList + i * 0x10);
@@ -132,74 +122,22 @@ namespace CoreCheat_Reborn.Versions.Panorama
                             if (CEntityPlayer.Team(EntBase) == Teams.NONE || CEntityPlayer.Team(EntBase) == Teams.SPECTATOR) continue;
                             if (CEntityPlayer.WeaponName(EntBase) == "NONE") continue;
                             Aimbot.ConfigureAimbot(EntBase, Aim);
-
-                            #region Entity Cheats
-
-                            #region Glow ESP (WallHack)
                             GlowESP.RunGlowESPPanorama(EntBase);
-                            #endregion
-
-                            #region Chams
                             Chams.RunChamsPanorama(EntBase);
-                            #endregion
-
-                            #region Engine Radar Hack
                             EngineRadar.RunRadarPanorama(EntBase);
-                            #endregion
-
-                            #endregion
                         }
-                        #endregion
-
-                        #region BunnyHop
                         BunnyHop.RunBunnyHopPanorama();
-                        #endregion
-
-                        #region AutoPistol
                         AutoPistol.RunAutoPistolPanorama();
-                        #endregion
-
-                        #region Trigger Bot
                         Triggerbot.RunTriggerBotPanorama();
-                        #endregion
-
-                        #region No Flash
                         NoFlash.RunNoFlashPanorama();
-                        #endregion
-
-                        #region No Hands
                         NoHands.RunNoHandsPanorama();
-                        #endregion
-
-                        #region DamageIndicator
                         DamageIndicator.RunDamageIndicatorPanorama();
-                        #endregion
-
-                        #region Remove Scope
                         RemoveScope.RunRemoveScopePanorama();
-                        #endregion
-
-                        #region ViewModel FOV
                         ViewModelFOV.RunViewModelFOV();
-                        #endregion
-
-                        #region Recoil Control System
                         RecoilControlSystem.RunRCSPanorama();
-                        #endregion
-
-                        #region Bomb (Grenade) Trajectory
                         GrenadeTrajectory.RunGPRJPanorama();
-                        #endregion
-
-                        #region No Smoke
                         NoSmoke.RunNoSmokePanorama();
-                        #endregion
-
-                        #region Aimbot
                         Aimbot.RunAimbotPanorama(Aim);
-                        #endregion
-
-                        #endregion
 
                         #region Performance Settings
                         if (CheatPerf == PerformanceTimes.VHIGH) { }
@@ -595,5 +533,10 @@ namespace CoreCheat_Reborn.Versions.Panorama
         #endregion
 
         #endregion
+
+        private void MetroToggle1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -102,6 +102,7 @@
             this.smoothTrack = new MetroFramework.Controls.MetroTrackBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.settingsPage = new MetroFramework.Controls.MetroTabPage();
+            this.devMenuButton = new System.Windows.Forms.Button();
             this.fpsInfoTR = new System.Windows.Forms.Label();
             this.fpsInfo = new System.Windows.Forms.Label();
             this.fpsGroup = new System.Windows.Forms.GroupBox();
@@ -115,7 +116,6 @@
             this.titleTimer = new System.Windows.Forms.Timer(this.components);
             this.dotHider = new MetroFramework.Controls.MetroPanel();
             this.realDotHider = new MetroFramework.Controls.MetroPanel();
-            this.devMenuButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPic)).BeginInit();
             this.mainTab.SuspendLayout();
@@ -1310,6 +1310,17 @@
             this.settingsPage.VerticalScrollbarHighlightOnWheel = false;
             this.settingsPage.VerticalScrollbarSize = 10;
             // 
+            // devMenuButton
+            // 
+            this.devMenuButton.Location = new System.Drawing.Point(471, 196);
+            this.devMenuButton.Name = "devMenuButton";
+            this.devMenuButton.Size = new System.Drawing.Size(44, 23);
+            this.devMenuButton.TabIndex = 6;
+            this.devMenuButton.Text = "DW";
+            this.devMenuButton.UseVisualStyleBackColor = true;
+            this.devMenuButton.Visible = false;
+            this.devMenuButton.Click += new System.EventHandler(this.DevMenuButton_Click);
+            // 
             // fpsInfoTR
             // 
             this.fpsInfoTR.AutoSize = true;
@@ -1491,17 +1502,6 @@
             this.realDotHider.VerticalScrollbarBarColor = true;
             this.realDotHider.VerticalScrollbarHighlightOnWheel = false;
             this.realDotHider.VerticalScrollbarSize = 10;
-            // 
-            // devMenuButton
-            // 
-            this.devMenuButton.Location = new System.Drawing.Point(471, 196);
-            this.devMenuButton.Name = "devMenuButton";
-            this.devMenuButton.Size = new System.Drawing.Size(44, 23);
-            this.devMenuButton.TabIndex = 6;
-            this.devMenuButton.Text = "DW";
-            this.devMenuButton.UseVisualStyleBackColor = true;
-            this.devMenuButton.Visible = false;
-            this.devMenuButton.Click += new System.EventHandler(this.DevMenuButton_Click);
             // 
             // Main
             // 

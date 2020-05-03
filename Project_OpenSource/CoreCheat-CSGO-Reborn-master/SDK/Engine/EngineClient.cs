@@ -60,46 +60,12 @@ namespace CoreCheat_Reborn.CheatClasses
             {
                 if (ClientStateBase != 0)
                 {
-                    if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.CHALLENGE)
-                        return GameState.CHALLENGE;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.CHANGELEVEL)
-                        return GameState.CHANGELEVEL;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.CONNECTED)
-                        return GameState.CONNECTED;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.FULL)
-                        return GameState.FULL;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.NEW)
-                        return GameState.NEW;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.NONE)
-                        return GameState.NONE;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.PRESPAWN)
-                        return GameState.PRESPAWN;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.SPAWN)
-                        return GameState.SPAWN;
-                    else
-                        return GameState.NONE;
+                    return (GameState)CylMem.ReadInt(ClientState + dwClientState_State);
                 }
                 else
                 {
                     ConfigureClientState();
-                    if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.CHALLENGE)
-                        return GameState.CHALLENGE;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.CHANGELEVEL)
-                        return GameState.CHANGELEVEL;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.CONNECTED)
-                        return GameState.CONNECTED;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.FULL)
-                        return GameState.FULL;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.NEW)
-                        return GameState.NEW;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.NONE)
-                        return GameState.NONE;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.PRESPAWN)
-                        return GameState.PRESPAWN;
-                    else if (CylMem.ReadInt(ClientState + dwClientState_State) == (int)GameState.SPAWN)
-                        return GameState.SPAWN;
-                    else
-                        return GameState.NONE;
+                    return (GameState)CylMem.ReadInt(ClientState + dwClientState_State);
                 }
             }
         }
@@ -171,6 +137,13 @@ namespace CoreCheat_Reborn.CheatClasses
             get
             {
                 return CylMem.CRead<byte>(Modules.ClientDLLAdress + sv_grenade_trajectory);
+            }
+        }
+        public static bool SendPackets
+        {
+            set
+            {
+                CylMem.WriteBoolean(Modules.EngineDLLAdress + dwbSendPackets, value);
             }
         }
     }

@@ -15,7 +15,7 @@ namespace CoreCheat_Reborn
         private void LoadCheat_Click(object sender, EventArgs e)
         {
             Hide();
-            vSelector a = new vSelector();
+            Version_Selector.VersionSelector a = new Version_Selector.VersionSelector();
             a.Show();
         }
         private void CloseButton_Click(object sender, EventArgs e)

@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using static CoreCheat_Reborn.Classes.Global;
 
 namespace CoreCheat_Reborn.Classes
 {
@@ -19,7 +18,7 @@ namespace CoreCheat_Reborn.Classes
         }
         public static string GetStrData(string data)
         {
-            var srvStr = server + "?key=" + KEY + "&cmd=" + data;
+            var srvStr = ProgramSettings.Globals.server + "?key=" + ProgramSettings.Globals.KEY + "&cmd=" + data;
             return Download("string", srvStr);
         }
         public static bool IsProgramStatus()

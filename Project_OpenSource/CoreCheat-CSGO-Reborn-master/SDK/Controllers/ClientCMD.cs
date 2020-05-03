@@ -24,7 +24,7 @@ namespace CoreCheat_Reborn.SDK.Controllers
             var szCmd_bytes = Encoding.UTF8.GetBytes(szCmd + "\0");
             uint a = 0;
             CylMem.NativeMethods.WriteProcessMemory(CylMem.ProcessHandle, Address, szCmd_bytes, (IntPtr)szCmd_bytes.Length, ref a);
-            IntPtr Thread = CylMem.NativeMethods.CreateRemoteThread(CylMem.ProcessHandle, (IntPtr)null, IntPtr.Zero, new IntPtr(ClientDLLAdress + Offsets.signatures.dwClientCmd), Address, 0, (IntPtr)null);
+            IntPtr Thread = CylMem.NativeMethods.CreateRemoteThread(CylMem.ProcessHandle, (IntPtr)null, IntPtr.Zero, new IntPtr(EngineDLLAdress + Offsets.signatures.dwClientCmd), Address, 0, (IntPtr)null);
             CylMem.NativeMethods.CloseHandle(Thread);
             CylMem.NativeMethods.WaitForSingleObject(Thread, 0xFFFFFFFF);
         }

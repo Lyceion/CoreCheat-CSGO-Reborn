@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using static CoreCheat_Reborn.Classes.Global;
 using static CoreCheat_Reborn.Classes.WebConnection;
 
 namespace CoreCheat_Reborn.Classes
@@ -13,7 +12,7 @@ namespace CoreCheat_Reborn.Classes
             IsServerAcsessible();
             if (GetStrData("version") != "OK")
             {
-                Clipboard.SetText(KEY);
+                Clipboard.SetText(ProgramSettings.Globals.KEY);
                 MessageBox.Show("Your Launcher Has Been Outdated Or Modified. Please Download New Version or Again!", "Version Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Process.Start(GetStrData("update"));
                 Environment.Exit(0);
