@@ -16,7 +16,6 @@ function HideWrapperInIt(query,func){
     opacity:0
   },700,func);
 }
-/*
 function LoadPage(page){
   $.ajax({
     url:"gp.php",
@@ -35,23 +34,23 @@ function LoadPage(page){
       },500);
     });
   });
-}*/
+}
 function EjectLoaded(){
   $(".loadingopenbox").addClass("open");
   $(".arrow").addClass("open");
   $("#loadingbar").addClass("closed");
   setTimeout(()=>{
     $("#loadingbar").hide();
-  },4*1000);
+  },4*1000*0.001);
 }
-  var TriggerDistance = 100;
-  $(document).ready(()=>{
-    setTimeout(()=>{
-      EjectLoaded();
-    },3000);
-    $('html, body').animate({
-      scrollTop: 0
-  }, 0);
+var TriggerDistance = 100;
+$(document).ready(()=>{
+  setTimeout(()=>{
+    EjectLoaded();
+  },3000);
+  $('html, body').animate({
+    scrollTop: 0
+}, 0);
 
 
   var MenuHammer = new Hammer(document.querySelector("#bottom-menu"));
@@ -84,21 +83,15 @@ $('.carousel.carousel-slider').carousel({
   indicators: true
 });
 $(".GotoHome").click(function() {
-  $('html, body').animate({scrollTop: 0}, 2000);
-
-});
-
-$(".GotoApps").click(function() {
-  $('html, body').animate({scrollTop: $("#second-con").offset().top}, 2000);
+  LoadPage("home");
 });
 $(".GotoDiscord").click(function() {
-  $('html, body').animate({scrollTop: $("#third-con").offset().top}, 2000);
-});
-$(".GotoContacts").click(function() {
-  $('html, body').animate({scrollTop: $("#fourth-con").offset().top}, 2000);
-});
+  LoadPage("discord");
 
-
+});
+$(".GotoApps").click(function() {
+  LoadPage("apps");
+});
 $("#GotoUp").click(function() {
 $('html, body').animate({
     scrollTop: 0

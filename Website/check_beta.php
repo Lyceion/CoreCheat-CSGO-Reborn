@@ -1,8 +1,7 @@
 <?php
 // ALL SQL REMOVED BECAUSE OF SECURITY REASONS!!!!!!!!
 $output = '';
-$keyold = 'MTc5NUE2NkZCQjk0RDFGOTkxMUU0ODg3MDBDM0I0QTMyLjkuOS4yY29yZSwgVmVyc2lvbj0yLjkuOS4yLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPW51bGw=';
-$key = 'Qzc3MzVGNjBGREREMTUxNjQ0ODY0MEI2NTc0NTMxMUQyLjkuOS4yY29yZSwgVmVyc2lvbj0yLjkuOS4yLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPW51bGw=';
+$key = 'test';
 if(isset($_GET["cmd"]) && $_GET["key"] == $key){
 	switch ($_GET["cmd"]) {
 	case 'version':

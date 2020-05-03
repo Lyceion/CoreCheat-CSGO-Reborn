@@ -1,0 +1,97 @@
+
+
+@media only screen and (min-width: 992px)  {
+    #bottom-menu{
+        display: none;
+       }    
+}
+@media only screen and (max-width: 992px)  {
+    #bottom-menu{
+        background-color:none;
+        position: fixed;
+        width:100%;
+        bottom:0;
+        float:bottom;
+        height:10em;
+        text-align: center;
+        height: 5em;
+       }    
+}
+#bottom-menu > li{
+    display: inline-block;
+    margin: 1em 1em 0em 1em;
+    text-align: center;
+    animation-name: bgop;
+    animation-duration:1s;
+    position: relative;
+    bottom: 0em;
+    -webkit-transition: 0.4s ease-in-out; 
+}
+#bottom-menu > li > a > span.bmfloating-string{
+    color:#eee;
+    display: inline;    
+    text-align: right;
+    position: absolute;
+    bottom: 1.25em;
+    float: left;
+    
+}
+#bottom-menu > li > a > span.bmfloating-string:hover{
+    bottom: 1.25em;
+    left:4.3em;
+}
+#bottom-menu > li > a > span.bmfloating-string{
+    color:#eee;
+    display: inline;    
+    text-align: right;
+    position: absolute;
+    bottom: 1.25em;
+    left:4.3em;
+    float: left;
+    
+}
+#bottom-menu > li:hover{
+    bottom: 1.4em;
+    /*-webkit-transform: scale(1.1) ;
+*/
+}
+#bottom-menu > li:nth-child(1){
+    animation-name: bgop;
+    animation-duration:1s;
+}
+#bottom-menu > li:nth-child(2){
+    animation-name: bgop;
+    animation-duration:1.3s;
+}
+#bottom-menu > li:nth-child(3){
+    animation-name: bgop;
+    animation-duration:1.5s;
+}
+#bottom-menu > li.closed:nth-child(1){
+    animation-name: bgc;
+    animation-duration:1.5s;
+    bottom:-5em;
+}
+#bottom-menu > li.closed:nth-child(2){
+    animation-name: bgc;
+    animation-duration:1.3s;
+    bottom:-5em;
+}
+#bottom-menu > li.closed:nth-child(3){
+    animation-name: bgc;
+    animation-duration:1.0s;
+    bottom:-5em;
+}
+
+@keyframes bgop{
+    0%{bottom:-5em;-webkit-transform: rotate(90deg);};
+    60%{bottom:-3em;-webkit-transform: rotate(160deg);}
+    70%{bottom:1em;-webkit-transform: rotate(0deg);}
+    100%{bottom:0em;-webkit-transform: rotate(0deg);};
+}
+@keyframes bgc{
+    0%{bottom:0em;-webkit-transform: rotate(0deg);};
+    10%{bottom:1em;-webkit-transform: rotate(60deg);}
+    70%{bottom:1em;-webkit-transform: rotate(160deg);}
+    100%{bottom:-5em;-webkit-transform: rotate(180deg);};
+}
