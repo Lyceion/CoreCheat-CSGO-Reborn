@@ -75,12 +75,12 @@ namespace CoreCheat_Reborn.SDK.Entities
             {
                 if (LocalPlayerBase != 0)
                 {
-                    return (FlagState) CylMem.ReadInt(LocalPlayerBase + m_fFlags);
+                    return (FlagState)CylMem.ReadInt(LocalPlayerBase + m_fFlags);
                 }
                 else
                 {
                     ConfigureLocalPlayer();
-                    return (FlagState) CylMem.ReadInt(LocalPlayerBase + m_fFlags);
+                    return (FlagState)CylMem.ReadInt(LocalPlayerBase + m_fFlags);
                 }
             }
         }
