@@ -75,63 +75,12 @@ namespace CoreCheat_Reborn.SDK.Entities
             {
                 if (LocalPlayerBase != 0)
                 {
-                    if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.AIRCROUCH)
-                        return FlagState.AIRCROUCH;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.AIRMOVING)
-                        return FlagState.AIRMOVING;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.CROUCHING)
-                        return FlagState.CROUCHING;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.GROUNDMOVING)
-                        return FlagState.GROUNDMOVING;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.INPUDDLE)
-                        return FlagState.INPUDDLE;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.INWATER)
-                        return FlagState.INWATER;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.ONAIR)
-                        return FlagState.ONAIR;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.ONGROUND)
-                        return FlagState.ONGROUND;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.PUDDLECROUCH)
-                        return FlagState.PUDDLECROUCH;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.TOAIRCROUCH)
-                        return FlagState.TOAIRCROUCH;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.TOCROUCH)
-                        return FlagState.AIRMOVING;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.WATERCROUCH)
-                        return FlagState.WATERCROUCH;
-                    else
-                        return FlagState.NULL;
-
+                    return (FlagState) CylMem.ReadInt(LocalPlayerBase + m_fFlags);
                 }
                 else
                 {
                     ConfigureLocalPlayer();
-                    if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.AIRCROUCH)
-                        return FlagState.AIRCROUCH;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.AIRMOVING)
-                        return FlagState.AIRMOVING;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.CROUCHING)
-                        return FlagState.CROUCHING;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.GROUNDMOVING)
-                        return FlagState.GROUNDMOVING;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.INPUDDLE)
-                        return FlagState.INPUDDLE;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.INWATER)
-                        return FlagState.INWATER;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.ONAIR)
-                        return FlagState.ONAIR;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.ONGROUND)
-                        return FlagState.ONGROUND;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.PUDDLECROUCH)
-                        return FlagState.PUDDLECROUCH;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.TOAIRCROUCH)
-                        return FlagState.TOAIRCROUCH;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.TOCROUCH)
-                        return FlagState.AIRMOVING;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_fFlags) == (int)FlagState.WATERCROUCH)
-                        return FlagState.WATERCROUCH;
-                    else
-                        return FlagState.NULL;
+                    return (FlagState) CylMem.ReadInt(LocalPlayerBase + m_fFlags);
                 }
             }
         }
@@ -154,30 +103,12 @@ namespace CoreCheat_Reborn.SDK.Entities
             {
                 if (BaseAdress != 0)
                 {
-                    if (CylMem.ReadInt(LocalPlayerBase + m_iTeamNum) == (int)Teams.ANTI_TERRORIST)
-                        return Teams.ANTI_TERRORIST;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_iTeamNum) == (int)Teams.NONE)
-                        return Teams.NONE;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_iTeamNum) == (int)Teams.SPECTATOR)
-                        return Teams.SPECTATOR;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_iTeamNum) == (int)Teams.TERRORIST)
-                        return Teams.TERRORIST;
-                    else
-                        return Teams.NONE;
+                    return (Teams)CylMem.ReadInt(LocalPlayerBase + m_iTeamNum);
                 }
                 else
                 {
                     ConfigureLocalPlayer();
-                    if (CylMem.ReadInt(LocalPlayerBase + m_iTeamNum) == (int)Teams.ANTI_TERRORIST)
-                        return Teams.ANTI_TERRORIST;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_iTeamNum) == (int)Teams.NONE)
-                        return Teams.NONE;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_iTeamNum) == (int)Teams.SPECTATOR)
-                        return Teams.SPECTATOR;
-                    else if (CylMem.ReadInt(LocalPlayerBase + m_iTeamNum) == (int)Teams.TERRORIST)
-                        return Teams.TERRORIST;
-                    else
-                        return Teams.NONE;
+                    return (Teams)CylMem.ReadInt(LocalPlayerBase + m_iTeamNum);
                 }
             }
         }
