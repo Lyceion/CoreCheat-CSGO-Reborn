@@ -5,7 +5,7 @@ namespace CoreCheat_Reborn.SDK.Managers
 {
     class Modules
     {
-        public static string ClientDLLName = "client_panorama.dll";
+        public static string ClientDLLName = "client.dll";
         public static string EngineDLLName = "engine.dll";
         public static string ShaderAPIName = "shaderapidx9.dll";
         public static string VSTDLibDLLName = "vstdlib.dll";
