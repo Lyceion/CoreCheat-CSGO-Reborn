@@ -47,7 +47,7 @@ namespace CoreCheat_Reborn.Versions.OnlyWall
                 {
                     foreach (ProcessModule m in p[0].Modules)
                     {
-                        if (m.ModuleName == "client_panorama.dll")
+                        if (m.ModuleName == "client.dll")
                         {
                             Client = (int)m.BaseAddress;
                             return true;
