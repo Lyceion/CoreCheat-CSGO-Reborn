@@ -12,8 +12,8 @@ All good things have to end. So from now, im throwing the project to the communi
 Features
 -------------
 - Fully external SDK by me.
-- Automatic offset updater (Sig Scanning & AOB system) (Now i use it lmao).
-- Website controlling system (I removed panel & sql but php is still there.).
+- Automatic offset updater (Sig Scanning & AOB system).
+- Website controlling system (I removed panel & sql but php is still there).
 - Updater sistem which grabbing last release from GitHub with [Lufzys/Github.NET](https://github.com/Lufzys/Github.NET "Lufzys/Github.NET")
 - Program can be only opened from "Updater".
 - Everything, every settings is structed.
@@ -37,11 +37,9 @@ Features
 
 ## I need to explain some things...
 ----
-I removed my private Memory Class because im using that class in multipile games for my private cheats. You can easly implement your memory class just changeing R/W functions name with Visual Studio s "Find and Change" feature.
 
 Also removed SQL connections & panel systems and changed them with only giving output for string to activate the cheat. You can disable all server connection and update system with compiling it in DEBUG mode.
 
 The new website is not included.
 The web panel is not included.
-The memory class is not included.
 Manual & Automatic offset updaters included.
