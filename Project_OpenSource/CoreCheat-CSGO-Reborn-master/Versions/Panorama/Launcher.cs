@@ -24,7 +24,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
                         if (GetModuleAddress())
                         {
                             this.Hide();
-                            Main mainfrm = new Main();
+                            MainOld mainfrm = new MainOld();
                             mainfrm.Show();
                         }
                         else

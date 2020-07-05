@@ -255,7 +255,43 @@
     <Compile Include="Versions\Panorama\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Versions\Panorama\MainOld.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\MainOld.Designer.cs">
+      <DependentUpon>MainOld.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\WebConnection.cs" />
+    <Compile Include="Versions\Panorama\Pages\Aimbot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\Pages\Aimbot.Designer.cs">
+      <DependentUpon>Aimbot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\Panorama\Pages\Settings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\Pages\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\Panorama\Pages\Assists.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\Pages\Assists.Designer.cs">
+      <DependentUpon>Assists.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\Panorama\Pages\Miscs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\Pages\Miscs.Designer.cs">
+      <DependentUpon>Miscs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Versions\Panorama\Pages\Visuals.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Versions\Panorama\Pages\Visuals.Designer.cs">
+      <DependentUpon>Visuals.cs</DependentUpon>
+    </Compile>
     <Compile Include="Versions\Panorama\Settings.cs" />
     <Compile Include="Versions\ZDEV\Main.cs">
       <SubType>Form</SubType>
@@ -320,6 +356,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Versions\Panorama\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\MainOld.resx">
+      <DependentUpon>MainOld.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\Pages\Aimbot.resx">
+      <DependentUpon>Aimbot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\Pages\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\Pages\Assists.resx">
+      <DependentUpon>Assists.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\Pages\Miscs.resx">
+      <DependentUpon>Miscs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Versions\Panorama\Pages\Visuals.resx">
+      <DependentUpon>Visuals.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Versions\ZDEV\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
