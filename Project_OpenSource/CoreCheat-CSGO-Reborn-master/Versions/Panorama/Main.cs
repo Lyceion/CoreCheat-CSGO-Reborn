@@ -64,21 +64,11 @@ namespace CoreCheat_Reborn.Versions.Panorama
             AimbotButton.FlatAppearance.MouseDownBackColor = ProgramSettings.CheatTheme.SecondaryThemeColor;
             MiscsButton.FlatAppearance.MouseDownBackColor = ProgramSettings.CheatTheme.SecondaryThemeColor;
             SettingsButton.FlatAppearance.MouseDownBackColor = ProgramSettings.CheatTheme.SecondaryThemeColor;
-            VisualsButton.BackColor = ProgramSettings.CheatTheme.MainThemeColor;
-            AssistsButton.BackColor = ProgramSettings.CheatTheme.MainThemeColor;
-            AimbotButton.BackColor = ProgramSettings.CheatTheme.MainThemeColor;
-            MiscsButton.BackColor = ProgramSettings.CheatTheme.MainThemeColor;
-            SettingsButton.BackColor = ProgramSettings.CheatTheme.MainThemeColor;
             CloseButton.BackColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.R - 4, ProgramSettings.CheatTheme.MainThemeColor.G - 4, ProgramSettings.CheatTheme.MainThemeColor.B - 4);
             MinimizeButton.BackColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.R - 4, ProgramSettings.CheatTheme.MainThemeColor.G - 4, ProgramSettings.CheatTheme.MainThemeColor.B - 4);
             MinimizeButton.FlatAppearance.MouseOverBackColor = ProgramSettings.CheatTheme.SecondaryThemeColor;
             //MinimizeButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(MinimizeButton.BackColor.R - 10, MinimizeButton.BackColor.G - 10, MinimizeButton.BackColor.B - 10);
             logoTXT.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
-            VisualsButton.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
-            AssistsButton.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
-            AimbotButton.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
-            MiscsButton.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
-            SettingsButton.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
             CloseButton.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
             MinimizeButton.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
             ControlBoxPanel.BackColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.R - 4, ProgramSettings.CheatTheme.MainThemeColor.G - 4, ProgramSettings.CheatTheme.MainThemeColor.B - 4);
@@ -114,7 +104,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
             fadeInTimer.Start();
             LoadTheme();
             DarkBackAll();
-            Classes.Functions.InitializeProject();
+            //Classes.Functions.InitializeProject();
             VisualsButton.BackColor = ProgramSettings.CheatTheme.MainThemeColor;
             VisualsButton.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
             selectIndicator.Location = new Point(12, 71);
@@ -126,7 +116,8 @@ namespace CoreCheat_Reborn.Versions.Panorama
 
         private void VisualsButton_Click(object sender, EventArgs e)
         {
-            selectIndicator.Location = new Point(12, 71);
+            MoveIt(selectIndicator, 71);
+            //selectIndicator.Location = new Point(12, 71);
             MainPanel.Controls.Clear();
             MainPanel.Controls.Add(VisualsPage);
             DarkBackAll();
@@ -136,7 +127,8 @@ namespace CoreCheat_Reborn.Versions.Panorama
 
         private void AssistsButton_Click(object sender, EventArgs e)
         {
-            selectIndicator.Location = new Point(12, 112);
+            MoveIt(selectIndicator, 112);
+            //selectIndicator.Location = new Point(12, 112);
             MainPanel.Controls.Clear();
             MainPanel.Controls.Add(AssistsPage);
             DarkBackAll();
@@ -146,7 +138,8 @@ namespace CoreCheat_Reborn.Versions.Panorama
 
         private void AimbotButton_Click(object sender, EventArgs e)
         {
-            selectIndicator.Location = new Point(12, 154);
+            MoveIt(selectIndicator, 154);
+            //selectIndicator.Location = new Point(12, 154);
             MainPanel.Controls.Clear();
             MainPanel.Controls.Add(AimbotPage);
             DarkBackAll();
@@ -156,7 +149,8 @@ namespace CoreCheat_Reborn.Versions.Panorama
 
         private void MiscsButton_Click(object sender, EventArgs e)
         {
-            selectIndicator.Location = new Point(12, 196);
+            MoveIt(selectIndicator, 196);
+            //selectIndicator.Location = new Point(12, 196);
             MainPanel.Controls.Clear();
             MainPanel.Controls.Add(MiscsPage);
             DarkBackAll();
@@ -166,7 +160,8 @@ namespace CoreCheat_Reborn.Versions.Panorama
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            selectIndicator.Location = new Point(12, 238);
+            MoveIt(selectIndicator, 238);
+            //selectIndicator.Location = new Point(12, 238);
             MainPanel.Controls.Clear();
             MainPanel.Controls.Add(SettingsPage);
             DarkBackAll();
@@ -177,6 +172,136 @@ namespace CoreCheat_Reborn.Versions.Panorama
         private void Main_Load(object sender, EventArgs e)
         {
             InitCheat();
+        }
+
+        uint i = 0;
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            ProgramSettings.CheatTheme.SecondaryThemeColor = ColorTranslator.FromHtml(Rainbow(500, i%500));
+            LoadTheme();
+            if (i == uint.MaxValue)
+                i = 0;
+            i++;
+        }
+        //async void MoveIt(Panel Moving, int LocationY)
+        //{
+        //    int i = 1;
+        //    if (Moving.Location.Y < LocationY)
+        //    {
+        //        int Y = Moving.Location.Y;
+        //        do
+        //        {
+        //            Y++;
+        //            Moving.Location = new Point(Moving.Location.X, Y);
+        //            //await Task.Delay(TimeSpan.FromTicks(10000));
+        //            Sleep(1);
+        //            //Refresh();
+        //            //await Task.Delay(1);
+        //        } while (Moving.Location.Y < LocationY);
+        //    }
+        //    else if(Moving.Location.Y > LocationY)
+        //    {
+        //        int Y = Moving.Location.Y;
+        //        do
+        //        {
+        //            Y--;
+        //            Moving.Location = new Point(Moving.Location.X, Y);
+        //            //await Task.Delay(TimeSpan.FromTicks(10000));
+        //            Sleep(1);
+        //            //Refresh();
+        //            //await Task.Delay(1);
+        //        } while (Moving.Location.Y > LocationY); 
+        //    }
+        //}
+        public int GetTick(int Start, int End, int now, int maxtick)
+        { 
+            float normalized = (1*(float)(now) / (float)(Math.Abs(End - Start)+1));
+            float t = (float)Math.Pow((double)normalized,3)+0.4f;//oldu lannn
+            int anan = (int)((float)(maxtick)*t);//
+            return Math.Abs(anan);
+}
+        async void MoveIt(Panel Moving, int LocationY)
+        {
+            int i = 1;
+            if (Moving.Location.Y < LocationY)
+            {
+                int Y = Moving.Location.Y;
+                do
+                {
+                    Y++;
+                    Moving.Location = new Point(Moving.Location.X, Y);
+                    //int now = Math.Abs(Moving.Location.Y - Y);
+                    //await Task.Delay(TimeSpan.FromTicks(GetTick(Moving.Location.Y,LocationY, now,30000)));
+                    Sleep(1);
+                    //Refresh();
+                    //await Task.Delay(1);
+                } while (Moving.Location.Y < LocationY);
+            }
+            else if (Moving.Location.Y > LocationY)
+            {
+                int Y = Moving.Location.Y;
+                do
+                {
+                    Y--;
+                    Moving.Location = new Point(Moving.Location.X, Y);
+                    //await Task.Delay(TimeSpan.FromTicks(10000));
+                    //int now = Math.Abs(Moving.Location.Y - Y);
+                    //await Task.Delay(TimeSpan.FromTicks(GetTick(Moving.Location.Y, LocationY, now, 30000)));
+                    Sleep(1);
+                    //Refresh();
+                    //await Task.Delay(1);
+                } while (Moving.Location.Y > LocationY);
+            }
+        }
+        async void Sleep(double msec)
+        {
+            for (var since = DateTime.Now; (DateTime.Now - since).TotalMilliseconds < msec;)
+                await Task.Delay(TimeSpan.FromTicks(10));
+        }
+        public static String Rainbow(Int32 numOfSteps, UInt32 step)
+        {
+            var r = 0.0;
+            var g = 0.0;
+            var b = 0.0;
+            var h = (Double)step / numOfSteps;
+            var i = (Int32)(h * 6);
+            var f = h * 6.0 - i;
+            var q = 1 - f;
+
+            switch (i % 6)
+            {
+                case 0:
+                    r = 1;
+                    g = f;
+                    b = 0;
+                    break;
+                case 1:
+                    r = q;
+                    g = 1;
+                    b = 0;
+                    break;
+                case 2:
+                    r = 0;
+                    g = 1;
+                    b = f;
+                    break;
+                case 3:
+                    r = 0;
+                    g = q;
+                    b = 1;
+                    break;
+                case 4:
+                    r = f;
+                    g = 0;
+                    b = 1;
+                    break;
+                case 5:
+                    r = 1;
+                    g = 0;
+                    b = q;
+                    break;
+            }
+            return "#" + ((Int32)(r * 255)).ToString("X2") + ((Int32)(g * 255)).ToString("X2") + ((Int32)(b * 255)).ToString("X2");
         }
     }
 }

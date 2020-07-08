@@ -14,8 +14,9 @@ namespace CoreCheat_Reborn
         {
             public static Color MainThemeColor = Color.FromArgb(20, 20, 20); //DARK
             //public static Color MainThemeColor = Color.FromArgb(255, 255, 255); //LIGHT
-            public static Color SecondaryThemeColor = Color.FromArgb(203, 23, 29); //RED SECONDARY
+            //public static Color SecondaryThemeColor = Color.FromArgb(203, 23, 29); //RED SECONDARY
             //public static Color SecondaryThemeColor = Color.FromArgb(37, 138, 255); //BLUE SECONDARY
+            public static Color SecondaryThemeColor = ColorTranslator.FromHtml("#fc03c2"); //HOT PINK SECONDARY
             //public static Color SecondaryThemeColor = Color.FromArgb(106, 90, 205); //PURPLE SECONDARY
             //public static Color SecondaryThemeColor = Color.FromArgb(155, 155, 155); //GRAY SECONDARY
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CoreCheat_Reborn.Version_Selector
@@ -106,6 +107,41 @@ namespace CoreCheat_Reborn.Version_Selector
             VersionButton.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
             ControlBoxPanel.BackColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.R - 4, ProgramSettings.CheatTheme.MainThemeColor.G - 4, ProgramSettings.CheatTheme.MainThemeColor.B - 4);
         }
+        async void MoveIt(Panel Moving, int LocationY)
+        {
+            int i = 1;
+            if (Moving.Location.Y < LocationY)
+            {
+                int Y = Moving.Location.Y;
+                do
+                {
+                    Y++;
+                    Moving.Location = new Point(Moving.Location.X, Y);
+                    //await Task.Delay(TimeSpan.FromTicks(10000));
+                    Sleep(1);
+                    //Refresh();
+                    //await Task.Delay(1);
+                } while (Moving.Location.Y < LocationY);
+            }
+            else if (Moving.Location.Y > LocationY)
+            {
+                int Y = Moving.Location.Y;
+                do
+                {
+                    Y--;
+                    Moving.Location = new Point(Moving.Location.X, Y);
+                    //await Task.Delay(TimeSpan.FromTicks(10000));
+                    Sleep(1);
+                    //Refresh();
+                    //await Task.Delay(1);
+                } while (Moving.Location.Y > LocationY);
+            }
+        }
+        async void Sleep(double msec)
+        {
+            for (var since = DateTime.Now; (DateTime.Now - since).TotalMilliseconds < msec;)
+                await Task.Delay(TimeSpan.FromTicks(10));
+        }
         private void DarkBackAll()
         {
             HomeButton.BackColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.R - 7, ProgramSettings.CheatTheme.MainThemeColor.G - 7, ProgramSettings.CheatTheme.MainThemeColor.B - 7);
@@ -122,7 +158,7 @@ namespace CoreCheat_Reborn.Version_Selector
             fadeInTimer.Start();
             LoadTheme();
             DarkBackAll();
-            Classes.Functions.InitializeProject();
+            //Classes.Functions.InitializeProject();        //LYSEP SERVERS ARE DOWN RN
             HomeButton.BackColor = ProgramSettings.CheatTheme.MainThemeColor;
             HomeButton.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
             selectIndicator.Location = new Point(10, 104);
@@ -137,7 +173,8 @@ namespace CoreCheat_Reborn.Version_Selector
         }
         private void HomeButton_Click(object sender, EventArgs e)
         {
-            selectIndicator.Location = new Point(10, 104);
+            MoveIt(selectIndicator, 104);
+            //selectIndicator.Location = new Point(10, 104);
             MainPanel.Controls.Clear();
             MainPanel.Controls.Add(HomePage);
             DarkBackAll();
@@ -146,7 +183,8 @@ namespace CoreCheat_Reborn.Version_Selector
         }
         private void VersionButton_Click(object sender, EventArgs e)
         {
-            selectIndicator.Location = new Point(10, 145);
+            MoveIt(selectIndicator, 145);
+            //selectIndicator.Location = new Point(10, 145);
             MainPanel.Controls.Clear();
             MainPanel.Controls.Add(VersionsPage);
             DarkBackAll();
@@ -155,7 +193,8 @@ namespace CoreCheat_Reborn.Version_Selector
         }
         private void AboutButton_Click(object sender, EventArgs e) 
         {
-            selectIndicator.Location = new Point(10, 186);
+            MoveIt(selectIndicator, 186);
+            //selectIndicator.Location = new Point(10, 186);
             MainPanel.Controls.Clear();
             MainPanel.Controls.Add(AboutPage);
             DarkBackAll();

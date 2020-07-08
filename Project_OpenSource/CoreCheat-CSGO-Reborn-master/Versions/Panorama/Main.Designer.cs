@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TopPanel = new System.Windows.Forms.Panel();
             this.ControlBoxPanel = new System.Windows.Forms.Panel();
             this.MinimizeButton = new System.Windows.Forms.Button();
@@ -43,6 +44,7 @@
             this.LogoPicture = new System.Windows.Forms.PictureBox();
             this.topGlow = new System.Windows.Forms.Panel();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.TopPanel.SuspendLayout();
             this.ControlBoxPanel.SuspendLayout();
             this.SideBarPanel.SuspendLayout();
@@ -259,6 +261,11 @@
             this.MainPanel.Size = new System.Drawing.Size(634, 348);
             this.MainPanel.TabIndex = 10;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -299,5 +306,6 @@
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.Button MiscsButton;
         private System.Windows.Forms.Button SettingsButton;
+        private System.Windows.Forms.Timer timer1;
     }
 }

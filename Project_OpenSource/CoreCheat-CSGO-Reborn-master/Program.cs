@@ -11,8 +11,8 @@ namespace CoreCheat_Reborn
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Version_Selector.VersionSelector());
-            Application.Run(new Versions.Panorama.Main());
+            Application.Run(new Version_Selector.VersionSelector());
+            //Application.Run(new Versions.Panorama.Main());
         }
     }
 }

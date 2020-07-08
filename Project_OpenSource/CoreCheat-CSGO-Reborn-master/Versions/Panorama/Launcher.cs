@@ -55,7 +55,7 @@ namespace CoreCheat_Reborn.Versions.Panorama
                 {
                     foreach (ProcessModule m in p[0].Modules)
                     {
-                        if (m.ModuleName == "client.dll")
+                        if (m.ModuleName == SDK.Managers.Modules.ClientDLLName)
                         {
                             Client = (int)m.BaseAddress;
                             return true;
