@@ -2,7 +2,7 @@ Core-Project CSGO [LSREMAKE]
 =============
 All good things have to end. So from now, im throwing the project to the community. Always open to the pull request or issues. Waiting for your full support! 
 <p align="center">
-<img src="https://lysep.com/coreproject/img/CoreCheat.png" alt="Core-Project" width="150"/>
+<img src="https://lysep.com/logo/CoreCheat.png" alt="Core-Project" width="150"/>
 
 <img src="https://i.postimg.cc/yNW96mCS/Core-Project1.png" alt="Core-Project" width="1000"/>
 </p>
