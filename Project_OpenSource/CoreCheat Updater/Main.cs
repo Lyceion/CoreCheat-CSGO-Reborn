@@ -1,45 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Threading;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Convert;
 
 namespace CoreCheat_Updater
 {
-    public partial class Main : MetroFramework.Forms.MetroForm
-    {
 #pragma warning disable CS0436
-        public Main()
-        {
-            //CheckForUpdaterUpdates();
-            InitializeComponent();
-        }
+    public partial class Main : Form
+    {
         WebClient webClient;
         Stopwatch sw = new Stopwatch();
-        private void Main_Load(object sender, EventArgs e)
+        public Main()
         {
-            //InitializeRepo();
-            //CheckForCheatUpdates();
+            InitializeComponent();
         }
         void InitializeRepo()
         {
-            statusTXT.Text = "Initializing Repos...";
             GithubNET.Users.SelectUser("lysep-corp");
             GithubNET.Repository.SelectRepository("CoreCheatCSGO-LSREMAKE");
         }
         void CheckForCheatUpdates()
         {
-            statusTXT.Text = "Chekking For Updates...";
             var LastVersion = GithubNET.Repository.LatestReleasesUrl;
             var OldVersion = Datas.Default.OldVersionLink;
             if ((LastVersion != OldVersion) || !File.Exists(AppDomain.CurrentDomain.BaseDirectory + "core.exe"))
             {
-                statusTXT.Text = "Update Found! Downloading...";
+                circularProgressBar1.Visible = true;
                 try
                 {
                     DownloadFile(LastVersion, AppDomain.CurrentDomain.BaseDirectory + "cheat.zip");
@@ -53,28 +48,7 @@ namespace CoreCheat_Updater
             }
             else
             {
-                statusTXT.Text = "No Update Found. Starting Cheat...";
                 StartCheat();
-            }
-        }
-        void CheckForUpdaterUpdates()
-        {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-            string ProgramVersion = Convert.ToString(fvi.FileVersion);
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(ProgramVersion);
-            string KEY = ToBase64String(plainTextBytes);
-#if DEBUG
-            Clipboard.SetText(KEY);
-#endif
-            WebClient CylClient = new WebClient();
-            ServicePointManager.Expect100Continue = true;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            string WebKEY = CylClient.DownloadString("https://lysep.com/coreproject/check.php?cmd=updaterVersion");
-            if (WebKEY != KEY)
-            {
-                MessageBox.Show("En: Please download again.\n\nTr: Lütfen Tekrar Indirin.");
-                Environment.Exit(0);
             }
         }
         public void DownloadFile(string urlAddress, string location)
@@ -100,6 +74,10 @@ namespace CoreCheat_Updater
                 }
             }
         }
+        private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            circularProgressBar1.Value = e.ProgressPercentage;
+        }
         private void Completed(object sender, AsyncCompletedEventArgs e)
         {
             sw.Reset();
@@ -110,10 +88,7 @@ namespace CoreCheat_Updater
             }
             else
             {
-                percent.Visible = false;
-                dataInfo.Visible = false;
-                updateProgress.Spinning = true;
-                statusTXT.Text = "Download complated. Starting Cheat...";
+                circularProgressBar1.Visible = false;
                 if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "core.exe"))
                     File.Delete(AppDomain.CurrentDomain.BaseDirectory + "core.exe");
                 ZipFile.ExtractToDirectory(AppDomain.CurrentDomain.BaseDirectory + "cheat.zip", Directory.GetCurrentDirectory());
@@ -121,42 +96,91 @@ namespace CoreCheat_Updater
                 StartCheat();
             }
         }
-        private void Main_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-        private void UpdateProgress_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            dataInfo.Visible = true;
-            //dataInfo.Text = string.Format("{0} kb/s", (e.BytesReceived / 1024d / sw.Elapsed.TotalSeconds).ToString("0.00"));
-            updateProgress.Spinning = false;
-            updateProgress.Value = e.ProgressPercentage;
-            percent.Visible = true;
-            percent.Text = e.ProgressPercentage.ToString() + "%";
-            dataInfo.Text = string.Format("{0} MB's / {1} MB's",
-                (e.BytesReceived / 1024d / 1024d).ToString("0.00"),
-                (e.TotalBytesToReceive / 1024d / 1024d).ToString("0.00"));
-        }
-        private void Main_Shown(object sender, EventArgs e)
-        {
-            CheckForUpdaterUpdates();
-            InitializeRepo();
-            CheckForCheatUpdates();
-        }
         private void StartCheat()
         {
-            statusTXT.Text = "Program is started. Updater goes!";
-            //MD5Controller.MD5Controller.ChangeMD5(AppDomain.CurrentDomain.BaseDirectory + "core.exe");
+            MD5Controller.MD5Controller.ChangeMD5(AppDomain.CurrentDomain.BaseDirectory + "core.exe");
             var proc = Process.Start(AppDomain.CurrentDomain.BaseDirectory + "core.exe", "-updaterOut");
             if (proc.Id > 0)
             {
-                Thread.Sleep(3000);
+                Sleep(3000);
                 Environment.Exit(0);
             }
+        }
+        void Sleep(int msec)
+        {
+            var timer1 = new System.Windows.Forms.Timer();
+            if (msec == 0 || msec < 0) return;
+            timer1.Interval = msec;
+            timer1.Enabled = true;
+            timer1.Start();
+            timer1.Tick += (s, e) =>
+            {
+                timer1.Enabled = false;
+                timer1.Stop();
+            };
+            while (timer1.Enabled)
+                Application.DoEvents();
+        }
+        uint i = 0;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            BackColorPanel.ColorLeft = ColorTranslator.FromHtml(Rainbow(100, i % 100));
+            BackColorPanel.ColorRight = ColorTranslator.FromHtml(Rainbow(50, i % 50));
+            BackColorPanel.Refresh();
+            if (i == uint.MaxValue)
+                i = 0;
+            i++;
+        }
+        public static string Rainbow(int numOfSteps, uint step)
+        {
+            var r = 0.0;
+            var g = 0.0;
+            var b = 0.0;
+            var h = (double)step / numOfSteps;
+            var i = (int)(h * 6);
+            var f = h * 6.0 - i;
+            var q = 1 - f;
+
+            switch (i % 6)
+            {
+                case 0:
+                    r = 1;
+                    g = f;
+                    b = 0;
+                    break;
+                case 1:
+                    r = q;
+                    g = 1;
+                    b = 0;
+                    break;
+                case 2:
+                    r = 0;
+                    g = 1;
+                    b = f;
+                    break;
+                case 3:
+                    r = 0;
+                    g = q;
+                    b = 1;
+                    break;
+                case 4:
+                    r = f;
+                    g = 0;
+                    b = 1;
+                    break;
+                case 5:
+                    r = 1;
+                    g = 0;
+                    b = q;
+                    break;
+            }
+            return "#" + ((int)(r * 255)).ToString("X2") + ((int)(g * 255)).ToString("X2") + ((int)(b * 255)).ToString("X2");
+        }
+        private void Main_Shown(object sender, EventArgs e)
+        {
+            Sleep(3000);
+            InitializeRepo();
+            CheckForCheatUpdates();
         }
     }
 }
