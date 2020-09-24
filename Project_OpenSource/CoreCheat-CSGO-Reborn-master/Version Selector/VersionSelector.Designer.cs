@@ -54,9 +54,10 @@
             this.TopPanel.BackColor = System.Drawing.Color.Black;
             this.TopPanel.Controls.Add(this.ControlBoxPanel);
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopPanel.Location = new System.Drawing.Point(147, 3);
+            this.TopPanel.Location = new System.Drawing.Point(270, 0);
+            this.TopPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(634, 29);
+            this.TopPanel.Size = new System.Drawing.Size(1162, 54);
             this.TopPanel.TabIndex = 1;
             this.TopPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Drag_MouseDown);
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Drag_MouseMove);
@@ -68,9 +69,10 @@
             this.ControlBoxPanel.Controls.Add(this.MinimizeButton);
             this.ControlBoxPanel.Controls.Add(this.CloseButton);
             this.ControlBoxPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ControlBoxPanel.Location = new System.Drawing.Point(524, 0);
+            this.ControlBoxPanel.Location = new System.Drawing.Point(960, 0);
+            this.ControlBoxPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ControlBoxPanel.Name = "ControlBoxPanel";
-            this.ControlBoxPanel.Size = new System.Drawing.Size(110, 29);
+            this.ControlBoxPanel.Size = new System.Drawing.Size(202, 54);
             this.ControlBoxPanel.TabIndex = 2;
             // 
             // MinimizeButton
@@ -83,9 +85,10 @@
             this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MinimizeButton.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.MinimizeButton.ForeColor = System.Drawing.Color.White;
-            this.MinimizeButton.Location = new System.Drawing.Point(4, 0);
+            this.MinimizeButton.Location = new System.Drawing.Point(8, 0);
+            this.MinimizeButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.MinimizeButton.Name = "MinimizeButton";
-            this.MinimizeButton.Size = new System.Drawing.Size(53, 29);
+            this.MinimizeButton.Size = new System.Drawing.Size(97, 54);
             this.MinimizeButton.TabIndex = 3;
             this.MinimizeButton.Text = "_";
             this.MinimizeButton.UseVisualStyleBackColor = false;
@@ -101,9 +104,10 @@
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.CloseButton.ForeColor = System.Drawing.Color.White;
-            this.CloseButton.Location = new System.Drawing.Point(57, 0);
+            this.CloseButton.Location = new System.Drawing.Point(105, 0);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(53, 29);
+            this.CloseButton.Size = new System.Drawing.Size(97, 54);
             this.CloseButton.TabIndex = 2;
             this.CloseButton.Text = "X";
             this.CloseButton.UseVisualStyleBackColor = false;
@@ -113,10 +117,11 @@
             // 
             this.topGlow.BackColor = System.Drawing.Color.Black;
             this.topGlow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.topGlow.Dock = System.Windows.Forms.DockStyle.Top;
-            this.topGlow.Location = new System.Drawing.Point(0, 0);
+            this.topGlow.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.topGlow.Location = new System.Drawing.Point(0, 700);
+            this.topGlow.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.topGlow.Name = "topGlow";
-            this.topGlow.Size = new System.Drawing.Size(781, 3);
+            this.topGlow.Size = new System.Drawing.Size(1432, 2);
             this.topGlow.TabIndex = 4;
             this.topGlow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Drag_MouseDown);
             this.topGlow.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Drag_MouseMove);
@@ -133,9 +138,10 @@
             this.SideBarPanel.Controls.Add(this.logoTXT);
             this.SideBarPanel.Controls.Add(this.LogoPicture);
             this.SideBarPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SideBarPanel.Location = new System.Drawing.Point(0, 3);
+            this.SideBarPanel.Location = new System.Drawing.Point(0, 0);
+            this.SideBarPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.SideBarPanel.Name = "SideBarPanel";
-            this.SideBarPanel.Size = new System.Drawing.Size(147, 377);
+            this.SideBarPanel.Size = new System.Drawing.Size(270, 700);
             this.SideBarPanel.TabIndex = 5;
             this.SideBarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Drag_MouseDown);
             this.SideBarPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Drag_MouseMove);
@@ -144,9 +150,10 @@
             // selectIndicator
             // 
             this.selectIndicator.BackColor = System.Drawing.Color.White;
-            this.selectIndicator.Location = new System.Drawing.Point(12, 104);
+            this.selectIndicator.Location = new System.Drawing.Point(15, 192);
+            this.selectIndicator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.selectIndicator.Name = "selectIndicator";
-            this.selectIndicator.Size = new System.Drawing.Size(5, 37);
+            this.selectIndicator.Size = new System.Drawing.Size(9, 68);
             this.selectIndicator.TabIndex = 6;
             // 
             // AboutButton
@@ -157,9 +164,10 @@
             this.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AboutButton.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.AboutButton.ForeColor = System.Drawing.Color.White;
-            this.AboutButton.Location = new System.Drawing.Point(14, 186);
+            this.AboutButton.Location = new System.Drawing.Point(26, 343);
+            this.AboutButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.AboutButton.Name = "AboutButton";
-            this.AboutButton.Size = new System.Drawing.Size(135, 37);
+            this.AboutButton.Size = new System.Drawing.Size(248, 68);
             this.AboutButton.TabIndex = 5;
             this.AboutButton.Text = "About";
             this.AboutButton.UseVisualStyleBackColor = false;
@@ -173,9 +181,10 @@
             this.VersionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.VersionButton.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.VersionButton.ForeColor = System.Drawing.Color.White;
-            this.VersionButton.Location = new System.Drawing.Point(14, 145);
+            this.VersionButton.Location = new System.Drawing.Point(26, 268);
+            this.VersionButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.VersionButton.Name = "VersionButton";
-            this.VersionButton.Size = new System.Drawing.Size(135, 37);
+            this.VersionButton.Size = new System.Drawing.Size(248, 68);
             this.VersionButton.TabIndex = 4;
             this.VersionButton.Text = "Versions";
             this.VersionButton.UseVisualStyleBackColor = false;
@@ -189,9 +198,10 @@
             this.HomeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.HomeButton.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.HomeButton.ForeColor = System.Drawing.Color.White;
-            this.HomeButton.Location = new System.Drawing.Point(14, 104);
+            this.HomeButton.Location = new System.Drawing.Point(26, 192);
+            this.HomeButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.HomeButton.Name = "HomeButton";
-            this.HomeButton.Size = new System.Drawing.Size(136, 37);
+            this.HomeButton.Size = new System.Drawing.Size(249, 68);
             this.HomeButton.TabIndex = 3;
             this.HomeButton.Text = "Home";
             this.HomeButton.UseVisualStyleBackColor = false;
@@ -202,9 +212,10 @@
             this.logoTXT2.AutoSize = true;
             this.logoTXT2.Font = new System.Drawing.Font("Segoe UI Light", 9F);
             this.logoTXT2.ForeColor = System.Drawing.Color.White;
-            this.logoTXT2.Location = new System.Drawing.Point(8, 337);
+            this.logoTXT2.Location = new System.Drawing.Point(15, 622);
+            this.logoTXT2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.logoTXT2.Name = "logoTXT2";
-            this.logoTXT2.Size = new System.Drawing.Size(98, 30);
+            this.logoTXT2.Size = new System.Drawing.Size(174, 60);
             this.logoTXT2.TabIndex = 2;
             this.logoTXT2.Text = "Brought to you by\r\nLYSEP CORP.";
             this.logoTXT2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -214,9 +225,10 @@
             this.logoTXT.AutoSize = true;
             this.logoTXT.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
             this.logoTXT.ForeColor = System.Drawing.Color.White;
-            this.logoTXT.Location = new System.Drawing.Point(21, 3);
+            this.logoTXT.Location = new System.Drawing.Point(39, 6);
+            this.logoTXT.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.logoTXT.Name = "logoTXT";
-            this.logoTXT.Size = new System.Drawing.Size(103, 25);
+            this.logoTXT.Size = new System.Drawing.Size(172, 42);
             this.logoTXT.TabIndex = 1;
             this.logoTXT.Text = "Core Cheat";
             this.logoTXT.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Drag_MouseDown);
@@ -226,9 +238,10 @@
             // LogoPicture
             // 
             this.LogoPicture.Image = global::CoreCheat_Reborn.Properties.Resources.CoreCheatTransparent;
-            this.LogoPicture.Location = new System.Drawing.Point(51, 32);
+            this.LogoPicture.Location = new System.Drawing.Point(94, 59);
+            this.LogoPicture.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.LogoPicture.Name = "LogoPicture";
-            this.LogoPicture.Size = new System.Drawing.Size(37, 37);
+            this.LogoPicture.Size = new System.Drawing.Size(68, 68);
             this.LogoPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.LogoPicture.TabIndex = 0;
             this.LogoPicture.TabStop = false;
@@ -240,23 +253,25 @@
             // 
             this.MainPanel.BackColor = System.Drawing.Color.Black;
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(147, 32);
+            this.MainPanel.Location = new System.Drawing.Point(270, 54);
+            this.MainPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(634, 348);
+            this.MainPanel.Size = new System.Drawing.Size(1162, 646);
             this.MainPanel.TabIndex = 6;
             // 
             // VersionSelector
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.ClientSize = new System.Drawing.Size(781, 380);
+            this.ClientSize = new System.Drawing.Size(1432, 702);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.SideBarPanel);
             this.Controls.Add(this.topGlow);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "VersionSelector";

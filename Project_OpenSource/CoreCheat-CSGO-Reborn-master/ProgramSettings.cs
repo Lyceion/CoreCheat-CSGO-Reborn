@@ -24,9 +24,9 @@ namespace CoreCheat_Reborn
         {
             //SERVER PHP
 #if DEBUG
-            public static string server = "http://www.lysep.com/coreproject/check_beta.php";
+            public static string server = "https://lysep.com/coreproject/check";
 #else
-            public static string server = "http://www.lysep.com/coreproject/check.php";
+            public static string server = "https://lysep.com/coreproject/check";
 #endif
             //DEPENDS
             public static Assembly assembly = Assembly.GetExecutingAssembly();

@@ -158,10 +158,10 @@ namespace CoreCheat_Reborn.Version_Selector
             fadeInTimer.Start();
             LoadTheme();
             DarkBackAll();
-            //Classes.Functions.InitializeProject();        //LYSEP SERVERS ARE DOWN RN
+            Classes.Functions.InitializeProject();        //LYSEP SERVERS ARE DOWN RN
             HomeButton.BackColor = ProgramSettings.CheatTheme.MainThemeColor;
             HomeButton.ForeColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.ToArgb() ^ 0xffffff);
-            selectIndicator.Location = new Point(10, 104);
+            //selectIndicator.Location = new Point(10, 104);
         }
         private void CloseButton_Click(object sender, EventArgs e)
         {

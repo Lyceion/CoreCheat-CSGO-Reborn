@@ -11,17 +11,11 @@ namespace CoreCheat_Reborn.Version_Selector.Pages
         class CheatCard : Panel
         {
             public Form OpenForm = new Form();
-            public static string cheatStr = "Version Panorama\nFully Legit\nOnly Wallhack";
-            public string CheatName = cheatStr.Split(Environment.NewLine.ToCharArray())[i];
-            //public string CheatName = GetStrData("cheats").Split(Environment.NewLine.ToCharArray())[i];
+            //public static string cheatStr = "Version Panorama\nFully Legit\nOnly Wallhack";
+            //public string CheatName = cheatStr.Split(Environment.NewLine.ToCharArray())[i];
+            public string CheatName = GetStrData("cheats").Split(Environment.NewLine.ToCharArray())[i];
             public CheatCard() : base()
             {
-                Panel ThemeIndicator = new Panel
-                {
-                    Dock = DockStyle.Top,
-                    BackColor = ProgramSettings.CheatTheme.SecondaryThemeColor,
-                    Height = 5
-                };
                 Button StartCheatButton = new Button
                 {
                     Dock = DockStyle.Bottom,
@@ -44,10 +38,16 @@ namespace CoreCheat_Reborn.Version_Selector.Pages
                     Text = CheatName,
                     Location = new Point(5, 165)
                 };
+                Panel ThemeIndicator = new Panel
+                {
+                    Dock = DockStyle.Bottom,
+                    BackColor = ProgramSettings.CheatTheme.SecondaryThemeColor,
+                    Height = 5
+                };
                 Controls.Add(CheatNameLabel);
-                Controls.Add(ThemeIndicator);
                 Controls.Add(StartCheatButton);
                 Controls.Add(CheatPictureBox);
+                Controls.Add(ThemeIndicator);
                 CheatPictureBox.BringToFront();
                 BackColor = Color.FromArgb(ProgramSettings.CheatTheme.MainThemeColor.R - 10, ProgramSettings.CheatTheme.MainThemeColor.G - 10, ProgramSettings.CheatTheme.MainThemeColor.B - 10);
                 Width = 156;
@@ -67,8 +67,8 @@ namespace CoreCheat_Reborn.Version_Selector.Pages
         private void Versions_Load(object sender, EventArgs e)
         {
             //string[] Cheats = GetStrData("cheats").Split(Environment.NewLine.ToCharArray());
-            string cheatStr = "Version Panorama\nFully Legit\nOnly Wallhack";
-            string[] Cheats = cheatStr.Split(Environment.NewLine.ToCharArray());
+            //string cheatStr = "Version Panorama\nFully Legit\nOnly Wallhack";
+            string[] Cheats = GetStrData("cheats").Split(Environment.NewLine.ToCharArray());
             foreach (string cheat in Cheats)
             {
                 CheatCard _cheatCard = new CheatCard();

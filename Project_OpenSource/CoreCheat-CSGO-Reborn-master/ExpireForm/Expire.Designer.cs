@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Expire));
             this.logoPic = new System.Windows.Forms.PictureBox();
             this.logoText = new System.Windows.Forms.Label();
-            this.dragControl = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.LoadCheat = new System.Windows.Forms.Button();
             this.logoTextTR = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
@@ -73,13 +72,6 @@
             this.logoText.Size = new System.Drawing.Size(673, 45);
             this.logoText.TabIndex = 1;
             this.logoText.Text = "CORECHEAT PROJECT IS ENDING ON 09.09.2019";
-            // 
-            // dragControl
-            // 
-            this.dragControl.Fixed = true;
-            this.dragControl.Horizontal = true;
-            this.dragControl.TargetControl = this;
-            this.dragControl.Vertical = true;
             // 
             // LoadCheat
             // 
@@ -250,7 +242,6 @@
         private System.Windows.Forms.Label logoText;
         private Design.TransparancedPanel transparancedPanel1;
         private Design.TransparentLabel transparentLabel1;
-        private Bunifu.Framework.UI.BunifuDragControl dragControl;
         private System.Windows.Forms.Button LoadCheat;
         private System.Windows.Forms.Label logoTextTR;
         private System.Windows.Forms.Button CloseButton;
