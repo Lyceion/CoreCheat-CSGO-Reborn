@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreCheat LSREMAKE", "CoreCheat-CSGO-Reborn-master\CoreCheat LSREMAKE.csproj", "{35165BDA-6BF9-4A1C-AE2E-88C58035F152}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreCheat Updater", "CoreCheat Updater\CoreCheat Updater.csproj", "{924070BB-B87D-4CF5-BBE2-DE88476B5977}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreCheat NEON", "CoreCheat NEON\CoreCheat NEON.csproj", "{8A322D6A-4414-4CA2-BA90-AF91F6643831}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35165BDA-6BF9-4A1C-AE2E-88C58035F152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35165BDA-6BF9-4A1C-AE2E-88C58035F152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35165BDA-6BF9-4A1C-AE2E-88C58035F152}.Debug|x86.ActiveCfg = Debug|x86
+		{35165BDA-6BF9-4A1C-AE2E-88C58035F152}.Debug|x86.Build.0 = Debug|x86
+		{35165BDA-6BF9-4A1C-AE2E-88C58035F152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35165BDA-6BF9-4A1C-AE2E-88C58035F152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35165BDA-6BF9-4A1C-AE2E-88C58035F152}.Release|x86.ActiveCfg = Release|x86
+		{35165BDA-6BF9-4A1C-AE2E-88C58035F152}.Release|x86.Build.0 = Release|x86
+		{924070BB-B87D-4CF5-BBE2-DE88476B5977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{924070BB-B87D-4CF5-BBE2-DE88476B5977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{924070BB-B87D-4CF5-BBE2-DE88476B5977}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{924070BB-B87D-4CF5-BBE2-DE88476B5977}.Debug|x86.Build.0 = Debug|Any CPU
+		{924070BB-B87D-4CF5-BBE2-DE88476B5977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{924070BB-B87D-4CF5-BBE2-DE88476B5977}.Release|Any CPU.Build.0 = Release|Any CPU
+		{924070BB-B87D-4CF5-BBE2-DE88476B5977}.Release|x86.ActiveCfg = Release|Any CPU
+		{924070BB-B87D-4CF5-BBE2-DE88476B5977}.Release|x86.Build.0 = Release|Any CPU
+		{8A322D6A-4414-4CA2-BA90-AF91F6643831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A322D6A-4414-4CA2-BA90-AF91F6643831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A322D6A-4414-4CA2-BA90-AF91F6643831}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8A322D6A-4414-4CA2-BA90-AF91F6643831}.Debug|x86.Build.0 = Debug|Any CPU
+		{8A322D6A-4414-4CA2-BA90-AF91F6643831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A322D6A-4414-4CA2-BA90-AF91F6643831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A322D6A-4414-4CA2-BA90-AF91F6643831}.Release|x86.ActiveCfg = Release|Any CPU
+		{8A322D6A-4414-4CA2-BA90-AF91F6643831}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFB5ED95-80D5-4B3C-82DD-7E91C66EE7C6}
+	EndGlobalSection
+EndGlobal
